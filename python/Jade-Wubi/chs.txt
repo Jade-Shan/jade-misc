@@ -5131,8 +5131,8 @@ vcg	妈
 vck	始
 vcl	努
 vcm	帑
-vcn	妑
 vcn	怒
+vcn	妑
 vcu	厹
 vcx	弩
 vcy	奴
@@ -35790,6 +35790,7 @@ jvwy	归依
 jvxf	归结
 jvxm	归纳
 jvxw	照给
+jvxq	归约
 jvya	照度
 jvyi	照应
 jvyn	照遍
@@ -60894,6 +60895,7 @@ sgmc	酘
 sgmd	西岸
 sgme	醲
 sgmf	本周
+sgmh	栈帧
 sgmh	杮
 sgmi	栜
 sgmj	槽
@@ -60912,8 +60914,8 @@ sgnd	丁忧
 sgne	醑
 sgne	醪
 sgnf	丁丑
-sgng	酌情
 sgng	醒悟
+sgng	酌情
 sgng	翉
 sgnm	本届
 sgnn	配
@@ -63845,9 +63847,9 @@ tdwo	鸹
 tdwp	生辰八字
 tdwt	短途
 tdwv	矫健
-tdww	筴
-tdww	乱伦
 tdww	敌人
+tdww	乱伦
+tdww	筴
 tdwx	私有化
 tdwy	筹集
 tdwy	雉
