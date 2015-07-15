@@ -1,4 +1,8 @@
 Jade-doc-tool
 =============
 
-tools for trans document
+Tools for trans document:
+
+* jade-doc-tool: trans wiki to LaTeX. Depends on JRE.
+* jade-uml.sh: Depends Graphviz
+
