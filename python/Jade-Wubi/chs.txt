@@ -68081,8 +68081,8 @@ txtg	繁重
 txth	籎
 txti	繁衍
 txtj	繁复
-txtk	自给自足
 txtk	每种
+txtk	自给自足
 txtp	毛细管
 txts	每条
 txtu	繁简
@@ -78226,8 +78226,8 @@ wwyk	伧
 wwyl	人为
 wwym	儁
 wwym	僋
-wwyn	仱
 wwyn	欲望
+wwyn	仱
 wwyo	人迹
 wwyo	僬
 wwyp	售货亭
