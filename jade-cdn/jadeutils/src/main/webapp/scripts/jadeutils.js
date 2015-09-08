@@ -1,6 +1,6 @@
-String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, "") };
-String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, "") };
-String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, "") };
+String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
+String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
+String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
 
 var jadeUtils = {};
 
@@ -8,6 +8,7 @@ var jadeUtils = {};
 
 
 
+var jadeUtils = {};
 jadeUtils.dataStructure = {};
 
 /*
@@ -35,7 +36,7 @@ jadeUtils.dataStructure = {};
  *
  */
 jadeUtils.dataStructure.Map = function () {
-    this.elements = new Array();
+    this.elements = [];
  
     //获取MAP元素个数
     this.size = function() { return this.elements.length; };
@@ -44,7 +45,7 @@ jadeUtils.dataStructure.Map = function () {
     this.isEmpty = function() { return (this.elements.length < 1); };
  
     //删除MAP所有元素
-    this.clear = function() { this.elements = new Array(); };
+    this.clear = function() { this.elements = []; };
  
     //向MAP中增加元素（key, value) 
     this.put = function(_key, _value) {
@@ -109,7 +110,7 @@ jadeUtils.dataStructure.Map = function () {
  
     //获取MAP中所有VALUE的数组（ARRAY）
     this.values = function() {
-        var arr = new Array();
+        var arr = [];
         for (i = 0; i < this.elements.length; i++) {
             arr.push(this.elements[i].value);
         }
@@ -118,13 +119,13 @@ jadeUtils.dataStructure.Map = function () {
  
     //获取MAP中所有KEY的数组（ARRAY）
     this.keys = function() {
-        var arr = new Array();
+        var arr = [];
         for (i = 0; i < this.elements.length; i++) {
             arr.push(this.elements[i].key);
         }
         return arr;
     };
-}
+};
 
 
 /**
@@ -133,7 +134,7 @@ jadeUtils.dataStructure.Map = function () {
 jadeUtils.dataStructure.Stack = function () {
 
 	// 存储元素数组
-	var aElement = new Array();
+	var aElement = [];
 
 	/**
 	 * 元素入栈 1.Push方法参数可以多个 2.参数为空时返回-1
@@ -141,8 +142,8 @@ jadeUtils.dataStructure.Stack = function () {
 	 * @param: 入栈元素列表
 	 * @return: 堆栈元素个数
 	 */
-	Stack.prototype.push = function(vElement) {
-		if (arguments.length == 0)
+	this.push = function(vElement) {
+		if (arguments.length === 0)
 			return -1;
 		// 元素入栈
 		for ( var i = 0; i < arguments.length; i += 1) {
@@ -156,8 +157,8 @@ jadeUtils.dataStructure.Stack = function () {
 	 * 
 	 * @return: vElement
 	 */
-	Stack.prototype.pop = function() {
-		if (aElement.length == 0)
+	this.pop = function() {
+		if (aElement.length === 0)
 			return null;
 		else
 			return aElement.pop();
@@ -168,7 +169,7 @@ jadeUtils.dataStructure.Stack = function () {
 	 * 
 	 * @return: 元素个数
 	 */
-	Stack.prototype.size = function() {
+	this.size = function() {
 		return aElement.length;
 	};
 
@@ -177,8 +178,8 @@ jadeUtils.dataStructure.Stack = function () {
 	 * 
 	 * @return: vElement
 	 */
-	Stack.prototype.getTop = function() {
-		if (aElement.length == 0)
+	this.getTop = function() {
+		if (aElement.length === 0)
 			return null;
 		else
 			return aElement[aElement.length - 1];
@@ -187,7 +188,7 @@ jadeUtils.dataStructure.Stack = function () {
 	/**
 	 * 将堆栈置空
 	 */
-	Stack.prototype.removeAll = function() {
+	this.removeAll = function() {
 		aElement.length = 0;
 	};
 
@@ -196,8 +197,8 @@ jadeUtils.dataStructure.Stack = function () {
 	 * 
 	 * @return: 堆栈为空返回true,否则返回false
 	 */
-	Stack.prototype.isEmpty = function() {
-		if (aElement.length == 0)
+	this.isEmpty = function() {
+		if (aElement.length === 0)
 			return true;
 		else
 			return false;
@@ -208,7 +209,7 @@ jadeUtils.dataStructure.Stack = function () {
 	 * 
 	 * @return: 堆栈元素字符串
 	 */
-	Stack.prototype.toString = function() {
+	this.toString = function() {
 		var sResult = (aElement.reverse()).toString();
 		aElement.reverse();
 		return sResult;
@@ -222,7 +223,7 @@ jadeUtils.dataStructure.Stack = function () {
 jadeUtils.dataStructure.Queue = function () {
 
 	// 存储元素数组
-	var aElement = new Array();
+	var aElement = [];
 
 	/**
 	 * 元素入队 1.EnQueue方法参数可以多个 2.参数为空时返回-1
@@ -230,14 +231,13 @@ jadeUtils.dataStructure.Queue = function () {
 	 * @param: vElement元素列表
 	 * @return: 返回当前队列元素个数
 	 */
-	Queue.prototype.push = function(vElement) {
-		if (arguments.length == 0)
+	this.push = function(vElement) {
+		if (arguments.length === 0)
 			return -1;
 		// 元素入队
 		for ( var i = 0; i < arguments.length; i += 1) {
 			aElement.push(arguments[i]);
 		}
-		;
 		return aElement.length;
 	};
 
@@ -246,8 +246,8 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: vElement
 	 */
-	Queue.prototype.pop = function() {
-		if (aElement.length == 0)
+	this.pop = function() {
+		if (aElement.length === 0)
 			return null;
 		else
 			return aElement.shift();
@@ -258,7 +258,7 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: 元素个数
 	 */
-	Queue.prototype.size = function() {
+	this.size = function() {
 		return aElement.length;
 	};
 
@@ -267,8 +267,8 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: vElement
 	 */
-	Queue.prototype.GetHead = function() {
-		if (aElement.length == 0)
+	this.GetHead = function() {
+		if (aElement.length === 0)
 			return null;
 		else
 			return aElement[0];
@@ -279,8 +279,8 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: vElement
 	 */
-	Queue.prototype.GetEnd = function() {
-		if (aElement.length == 0)
+	this.GetEnd = function() {
+		if (aElement.length === 0)
 			return null;
 		else
 			return aElement[aElement.length - 1];
@@ -289,7 +289,7 @@ jadeUtils.dataStructure.Queue = function () {
 	/**
 	 * 将队列置空
 	 */
-	Queue.prototype.removeAll = function() {
+	this.removeAll = function() {
 		aElement.length = 0;
 	};
 
@@ -298,8 +298,8 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: 队列为空返回true,否则返回false
 	 */
-	Queue.prototype.isEmpty = function() {
-		if (aElement.length == 0)
+	this.isEmpty = function() {
+		if (aElement.length === 0)
 			return true;
 		else
 			return false;
@@ -310,7 +310,7 @@ jadeUtils.dataStructure.Queue = function () {
 	 * 
 	 * @return: 队列元素字符串
 	 */
-	Queue.prototype.toString = function() {
+	this.toString = function() {
 		var sResult = (aElement.reverse()).toString();
 		aElement.reverse();
 		return sResult;
@@ -318,37 +318,39 @@ jadeUtils.dataStructure.Queue = function () {
 };
 
 
-// function testStatic() {
-// 	var oStack = new Stack();
-// 	oStack.push("1");
-// 	oStack.push("2");
-// 	oStack.push("3");
-// 	oStack.push("a");
-// 	oStack.push("b");
-// 	oStack.push("c");
-// 	alert(oStack.toString());
-// 	alert(oStack.pop());
-// 	alert(oStack.pop());
-// 	alert(oStack.pop());
-// 	alert(oStack.toString());
-// 	delete oStack;
-// };
-// 
-// function testQueue() {
-// 	var oQueue = new Queue();
-// 	oQueue.push("1");
-// 	oQueue.push("2");
-// 	oQueue.push("3");
-// 	oQueue.push("a");
-// 	oQueue.push("b");
-// 	oQueue.push("c");
-// 	alert(oQueue.toString());
-// 	alert(oQueue.pop());
-// 	alert(oQueue.pop());
-// 	alert(oQueue.pop());
-// 	alert(oQueue.toString());
-// 	delete oQueue;
-// };
+function testStatic() {
+	var oStack = new jadeUtils.dataStructure.Stack();
+	oStack.push("1");
+	oStack.push("2");
+	oStack.push("3");
+	oStack.push("a");
+	oStack.push("b");
+	oStack.push("c");
+	console.log(oStack.toString());
+	console.log(oStack.pop());
+	console.log(oStack.pop());
+	console.log(oStack.pop());
+	console.log(oStack.toString());
+	// delete oStack;
+}
+
+function testQueue() {
+	var oQueue = new jadeUtils.dataStructure.Queue();
+	oQueue.push("1");
+	oQueue.push("2");
+	oQueue.push("3");
+	oQueue.push("a");
+	oQueue.push("b");
+	oQueue.push("c");
+	console.log(oQueue.toString());
+	console.log(oQueue.pop());
+	console.log(oQueue.pop());
+	console.log(oQueue.pop());
+	console.log(oQueue.toString());
+	//delete oQueue;
+}
+
+testStatic();testQueue();
 
 /**
  * 验证姓名 中文字、英文字母、数字
@@ -469,13 +471,13 @@ jadeUtils.cookieOperator = function (name, value, options) {
 			options.expires = -1;
 		}
 		var expires = '';
-		if (options.expires
-				&& (typeof options.expires == 'number' || options.expires.toUTCString)) {
+		if (options.expires && 
+				(typeof options.expires == 'number' || options.expires.toUTCString))
+		{
 			var date;
 			if (typeof options.expires == 'number') {
 				date = new Date();
-				date.setTime(date.getTime()
-						+ (options.expires * 24 * 60 * 60 * 1000));
+				date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
 			} else {
 				date = options.expires;
 			}
@@ -488,7 +490,7 @@ jadeUtils.cookieOperator = function (name, value, options) {
 				path, domain, secure ].join('');
 	} else {
 		var cookieValue = null;
-		if (document.cookie && document.cookie != '') {
+		if (document.cookie && document.cookie !== '') {
 			var cookies = document.cookie.split(';');
 			for ( var i = 0; i < cookies.length; i++) {
 				var cookie = jQuery.trim(cookies[i]);
@@ -516,7 +518,7 @@ jadeUtils.formatter.formatNumber = function (num, scale) {
 	var l = num.split(".")[0].split("").reverse(), r = num.split(".")[1];
 	var t = "";
 	for (var i = 0; i < l.length; i++) {  
-		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");  
+		t += l[i] + ((i + 1) % 3 === 0 && (i + 1) != l.length ? "," : "");  
 	}  
 	return t.split("").reverse().join("") + "." + r;  
 };
