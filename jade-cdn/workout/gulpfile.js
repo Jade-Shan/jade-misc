@@ -1,4 +1,3 @@
-
 // #!/bin/bash
 // # lessc -x style.less > style.css
 // # lessc style.less > style.css
@@ -36,7 +35,7 @@ gulp.task('build-less', function() {
 // 合并、压缩、重命名css
 gulp.task('min-styles', function() {
 	gulp.src([pathCss + '**/*.css'])
-		.pipe(concat('jadeutils.css'))      // 合并文件为all.css
+		.pipe(concat('workout.css'))      // 合并文件为all.css
 		.pipe(gulp.dest(pathCss))  // 输出all.css文件
 		.pipe(rename({suffix: '.min'})) // 重命名all.css为 all.min.css
 		.pipe(minifycss())                // 压缩css文件
@@ -50,7 +49,7 @@ gulp.task('check-js', function() {
 
 gulp.task('min-scripts', function() {
 	gulp.src(pathJs + '**/*.js')
-		.pipe(concat('jadeutils.js'))
+		.pipe(concat('workout.js'))
 		.pipe(gulp.dest(pathScripts))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(uglify())
