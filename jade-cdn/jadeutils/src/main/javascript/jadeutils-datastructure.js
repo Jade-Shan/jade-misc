@@ -340,4 +340,4 @@ function testQueue() {
 	//delete oQueue;
 }
 
-testStatic();testQueue();
+// testStatic();testQueue();

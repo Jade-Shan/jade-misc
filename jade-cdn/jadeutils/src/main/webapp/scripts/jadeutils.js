@@ -350,8 +350,9 @@ function testQueue() {
 	//delete oQueue;
 }
 
-testStatic();testQueue();
+// testStatic();testQueue();
 
+jadeUtils.valid = {};
 /**
  * 验证姓名 中文字、英文字母、数字
  */
