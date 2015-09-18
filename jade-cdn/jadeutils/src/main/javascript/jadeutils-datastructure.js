@@ -1,4 +1,3 @@
-var jadeUtils = {};
 jadeUtils.dataStructure = {};
 
 /*

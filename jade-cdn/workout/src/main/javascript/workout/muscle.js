@@ -10,7 +10,8 @@ workoutApp.muscle.muscleJson = [
 	{"id": "1-3", "name": "Sternocleidomastoid", "chs": "胸锁乳突肌", "subs": []}]},
 {"id": "2", "name": "Chest", "chs": "胸", "subs": [
 	{"id": "2-1", "name": "Pectoralis Major", "chs": "胸大肌", "subs": []},
-	{"id": "2-2", "name": "Pectoralis Minor", "chs": "胸小肌", "subs": []}]},
+	{"id": "2-2", "name": "Pectoralis Minor", "chs": "胸小肌", "subs": []},
+	{"id": "2-3", "name": "Serratus Anterior", "chs": "前锯肌", "subs": []}]},
 {"id": "3", "name": "Back", "chs": "背", "subs": [
 	{"id": "3-1", "name": "Trapezius", "chs": "斜方肌", "subs": [
 		{"id": "3-1-1", "name": "Trapezius", "chs": "斜方肌", "subs": []},
@@ -49,8 +50,7 @@ workoutApp.muscle.muscleJson = [
 {"id": "7", "name": "Abs", "chs": "腹肌", "subs": [
 	{"id": "7-1", "name": "Rectus Abdominis", "chs": "腹直肌", "subs": []},
 	{"id": "7-2", "name": "Tendinous Inscriptions", "chs": "腱割肌", "subs": []},
-	{"id": "7-3", "name": "Serratus Anterior", "chs": "前锯肌", "subs": []},
-	{"id": "7-4", "name": "Serratus Anterior", "chs": "前锯肌", "subs": []},
+	{"id": "7-4", "name": "Flank muscle", "chs": "肋间肌", "subs": []},
 	{"id": "7-5", "name": "External Oblique", "chs": "腹外斜肌", "subs": []}]},
 {"id": "8", "name": "Waist", "chs": "腰", "subs": [
 	{"id": "8-1", "name": "Erector Spinae", "chs": "竖脊肌", "subs": []},
@@ -82,7 +82,9 @@ workoutApp.muscle.muscleJson = [
 		{"id": "b-3-2", "name": "Peroneus Longus", "chs": "腓骨长肌", "subs": []}]},
 	{"id": "b-4", "name": "Peroneus Brevis", "chs": "腓骨短肌", "subs": []},
 	{"id": "b-5", "name": "Extensor Digitorum Longus", "chs": "伸趾长肌", "subs": []},
-	{"id": "b-6", "name": "Gastrocnemius", "chs": "腓肠肌", "subs": []},
+	{"id": "b-6", "name": "Gastrocnemius", "chs": "腓肠肌", "subs": [
+		{"id": "b-6-1", "name": "Gastrocnemius", "chs": "腓肠肌", "subs": []},
+		{"id": "b-6-2", "name": "Gastrocnemius", "chs": "腓肠肌", "subs": []}]},
 	{"id": "b-7", "name": "Soleus", "chs": "比目鱼肌", "subs": [
 		{"id": "b-7-1", "name": "Soleus", "chs": "比目鱼肌", "subs": []},
 		{"id": "b-7-2", "name": "Soleus", "chs": "比目鱼肌", "subs": []}]},
@@ -132,5 +134,18 @@ workoutApp.muscle.loadMuscleImg = function (cId, width, height, scale, url) {
 			workoutApp.muscle.initMuscleImage(cId);
 			}
 			});
+};
+
+/**
+ * 标记肌肉训练状态
+ */
+workoutApp.muscle.markMusclePrimary = function (id) {
+	$("#f-head").attr("class","muscle-primary")
+};
+workoutApp.muscle.markMuscleMinor = function (id) {
+	$("#f-head").attr("class","muscle-minor")
+};
+workoutApp.muscle.markMuscleExtra = function (id) {
+	$("#f-head").attr("class","muscle-extra")
 };
 
