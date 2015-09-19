@@ -140,12 +140,12 @@ workoutApp.muscle.loadMuscleImg = function (cId, width, height, scale, url) {
  * 标记肌肉训练状态
  */
 workoutApp.muscle.markMusclePrimary = function (id) {
-	$("#f-head").attr("class","muscle-primary")
+	$("#f-head").attr("class","muscle-primary");
 };
 workoutApp.muscle.markMuscleMinor = function (id) {
-	$("#f-head").attr("class","muscle-minor")
+	$("#f-head").attr("class","muscle-minor");
 };
 workoutApp.muscle.markMuscleExtra = function (id) {
-	$("#f-head").attr("class","muscle-extra")
+	$("#f-head").attr("class","muscle-extra");
 };
 
