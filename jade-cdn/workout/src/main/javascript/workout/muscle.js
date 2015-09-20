@@ -107,6 +107,8 @@ workoutApp.muscle.muscleMap = new jadeUtils.dataStructure.Map();
 workoutApp.muscle.addMuscle2Map(workoutApp.muscle.muscleJson, 
 		workoutApp.muscle.muscleMap);
 
+workoutApp.muscle.MuscleDataFpath = cdnworkout + "datas/muscle-front.data";
+workoutApp.muscle.MuscleDataBpath = cdnworkout + "datas/muscle-back.data" ;
 
 /**
  * 初始化肌肉图，绑定点击事件
@@ -119,4 +121,53 @@ workoutApp.muscle.initMuscleImage = function (item) {
 				});
 			});
 };
+
+
+/**
+ * 加载肌肉图片（Svg格式）
+ */
+workoutApp.muscle.loadMuscleImg = function (cId, width, height, scale, url, callback) {
+	$.get(url, function (data, status, xhr) {
+		if (200 == xhr.status && "success" == status) {
+			var html = '<svg xmlns="http://www.w3.org/2000/svg"' +
+		'width="' + width + '" height="' + height + '">' + 
+		'<g transform="scale(' + scale + ')">' + data + '</g></svg>';
+	$("#"+cId).html(html);
+	workoutApp.muscle.initMuscleImage(cId);
+	callback();
+		}
+	});
+};
+
+workoutApp.muscle.markMusclesPrimary = function (ids) {
+	if(ids.length > 0)
+	$.each(ids, function(index, item){
+			$("." + item).attr("class","muscle-primary");
+			});
+};
+workoutApp.muscle.markMusclesMinor = function (ids) {
+	if(ids.length > 0)
+	$.each(ids, function(index, item){
+			$("." + item).attr("class","muscle-minor");
+			});
+};
+workoutApp.muscle.markMusclesExtra = function (ids) {
+	if(ids.length > 0)
+	$.each(ids, function(index, item){
+			$("." + item).attr("class","muscle-extra");
+			});
+};
+
+workoutApp.muscle.loadMarkedMuscles = function (fid, bid, width, height, scale, marks) {
+	workoutApp.muscle.loadMuscleImg(fid, width, height, scale,
+			workoutApp.muscle.MuscleDataFpath, function() {
+				workoutApp.muscle.loadMuscleImg(bid, width, height, scale, 
+					workoutApp.muscle.MuscleDataBpath, function () {
+						workoutApp.muscle.markMusclesExtra(marks.ext);
+						workoutApp.muscle.markMusclesPrimary(marks.pim);
+						workoutApp.muscle.markMusclesMinor(marks.min);
+					});
+			});
+};
+
 

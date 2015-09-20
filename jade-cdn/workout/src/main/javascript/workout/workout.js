@@ -1,6 +1,10 @@
 workoutApp.workout = {};
 
-workoutApp.workout.AerobicItems = [ ];
+workoutApp.workout.AerobicItems = [
+{id: "aero-1-1", name: "慢跑", ename: "Jogging"},
+{id: "aero-2-1", name: "游泳", ename: "Swimming"},
+{id: "aero-3-1", name: "椭圆机", ename: "Elliptical Machine"},
+];
 
 workoutApp.workout.StrengthItems = [
 	{part: "肩部", epart: "Shoulder", type: "fixed", id: "sth-1-1", name: "", ename: "Shoulder Press", 
@@ -69,7 +73,7 @@ workoutApp.workout.addItems2Map = function (item, map) {
 workoutApp.workout.StrengthItemMap = workoutApp.workout.addItems2Map(
 	workoutApp.workout.StrengthItems, new jadeUtils.dataStructure.Map());
 
-workoutApp.workout.AerobicItemMap  = workoutApp.workout.addItems2Map(
+workoutApp.workout.AerobicItemMap = workoutApp.workout.addItems2Map(
 	workoutApp.workout.AerobicItems, new jadeUtils.dataStructure.Map());
 
 
@@ -79,7 +83,7 @@ workoutApp.workoutRec = {};
 workoutApp.workoutRec.recordStrengthRec = function () {
 	var username = $('#username').val();
 	var password = $('#password').val();
-	var item = $('#item').val();
+	var workoutId = $('#workoutId').val();
 	var weight = $('#weight').val();
 	var repeat = $('#repeat').val();
 	var auth = 'Basic ' + jadeUtils.string.base64encode(
@@ -91,7 +95,7 @@ workoutApp.workoutRec.recordStrengthRec = function () {
 				data: {
 					username: username,
 					password: password,
-					item    : item,
+					workoutId: workoutId,
 					weight  : weight,
 					repeat  : repeat},
 				success: function(data, status, xhr) {

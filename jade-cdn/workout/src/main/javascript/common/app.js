@@ -1,3 +1,5 @@
+var cdnworkout = "http://7xldv2.com1.z0.glb.clouddn.com/workout/";
+
 var workoutApp = {};
 workoutApp.appPath = "/crawler-web2";
 
