@@ -100,8 +100,8 @@ workoutApp.workoutRec.recordStrengthRec = function () {
 					repeat  : repeat},
 				success: function(data, status, xhr) {
 					console.debug(data);
-					jadeUtils.cookieOperator('weight', weight);
-					jadeUtils.cookieOperator('repeat', repeat);
+					jadeUtils.cookieOperator('weight' + workoutId, weight);
+					jadeUtils.cookieOperator('repeat' + workoutId, repeat);
 				},
 				error: function(xhr, errorType, error) { alert("Ajax Error!"); },
 				complete: function(xhr, status) {}
@@ -109,5 +109,37 @@ workoutApp.workoutRec.recordStrengthRec = function () {
 	}
 };
 
+
+workoutApp.workoutRec.recordAerobicRec = function () {
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var workoutId = $('#workoutId').val();
+	var time = $('#time').val();
+	var distance = $('#distance').val();
+	var calories = $('#calories').val();
+	var auth = 'Basic ' + jadeUtils.string.base64encode(
+			jadeUtils.string.utf16to8(username + ':' + password)); 
+	if ("" !== username) {
+		$.ajax({ type: 'POST', dataType: 'json', timeout: 3000,
+				url: workoutApp.appPath + '/api/workout/recordAerobicRec', 
+				headers: {Authorization: auth},
+				data: {
+					username: username,
+					password: password,
+					workoutId: workoutId,
+					time: time,
+					distance: distance,
+					calories: calories},
+				success: function(data, status, xhr) {
+					console.debug(data);
+					jadeUtils.cookieOperator('time'     + workoutId, time    );
+					jadeUtils.cookieOperator('distance' + workoutId, distance);
+					jadeUtils.cookieOperator('calories' + workoutId, calories);
+				},
+				error: function(xhr, errorType, error) { alert("Ajax Error!"); },
+				complete: function(xhr, status) {}
+			});
+	}
+};
 
 
