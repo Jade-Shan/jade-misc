@@ -1,4 +1,3 @@
-var workoutApp = {};
 workoutApp.muscle = {};
 /**
  * 肌肉相关数据
@@ -119,33 +118,5 @@ workoutApp.muscle.initMuscleImage = function (item) {
 				console.debug(workoutApp.muscle.muscleMap.get(muscleId));
 				});
 			});
-};
-
-/**
- * 加载肌肉图片（Svg格式）
- */
-workoutApp.muscle.loadMuscleImg = function (cId, width, height, scale, url) {
-	$.get(url, function (data, status, xhr) {
-			if (200 == xhr.status && "success" == status) {
-			var html = '<svg xmlns="http://www.w3.org/2000/svg"' +
-				'width="' + width + '" height="' + height + '">' + 
-				'<g transform="scale(' + scale + ')">' + data + '</g></svg>';
-			$("#"+cId).html(html);
-			workoutApp.muscle.initMuscleImage(cId);
-			}
-			});
-};
-
-/**
- * 标记肌肉训练状态
- */
-workoutApp.muscle.markMusclePrimary = function (id) {
-	$("#f-head").attr("class","muscle-primary");
-};
-workoutApp.muscle.markMuscleMinor = function (id) {
-	$("#f-head").attr("class","muscle-minor");
-};
-workoutApp.muscle.markMuscleExtra = function (id) {
-	$("#f-head").attr("class","muscle-extra");
 };
 

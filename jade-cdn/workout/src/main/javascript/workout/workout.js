@@ -1,7 +1,8 @@
-workoutApp.AerobicItems = [
-];
+workoutApp.workout = {};
 
-workoutApp.StrengthItems = [
+workoutApp.workout.AerobicItems = [ ];
+
+workoutApp.workout.StrengthItems = [
 	{part: "肩部", epart: "Shoulder", type: "fixed", id: "sth-1-1", name: "", ename: "Shoulder Press", 
 		pim: ["4-1", "4-2", "4-3"], min: ["3-1-1", "5-5-1", "5-5-2", "5-5-3"], ext: []},
 	{part: "肩部", epart: "Shoulder", type: "fixed", id: "sth-1-2", name: "", ename: "Shoulder Press", 
@@ -54,6 +55,55 @@ workoutApp.StrengthItems = [
 
 ];
 
+/**
+ * 把json数据转入Map中
+ */
+workoutApp.workout.addItems2Map = function (item, map) {
+	for (var i in item) {
+		var d = item[i];
+		map.put(d.id, d);
+	}
+	return map;
+};
+
+workoutApp.workout.StrengthItemMap = workoutApp.workout.addItems2Map(
+	workoutApp.workout.StrengthItems, new jadeUtils.dataStructure.Map());
+
+workoutApp.workout.AerobicItemMap  = workoutApp.workout.addItems2Map(
+	workoutApp.workout.AerobicItems, new jadeUtils.dataStructure.Map());
+
+
+
+workoutApp.workoutRec = {};
+
+workoutApp.workoutRec.recordStrengthRec = function () {
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var item = $('#item').val();
+	var weight = $('#weight').val();
+	var repeat = $('#repeat').val();
+	var auth = 'Basic ' + jadeUtils.string.base64encode(
+			jadeUtils.string.utf16to8(username + ':' + password)); 
+	if ("" !== username) {
+		$.ajax({ type: 'POST', dataType: 'json', timeout: 3000,
+				url: workoutApp.appPath + '/api/workout/recordStrengthRec', 
+				headers: {Authorization: auth},
+				data: {
+					username: username,
+					password: password,
+					item    : item,
+					weight  : weight,
+					repeat  : repeat},
+				success: function(data, status, xhr) {
+					console.debug(data);
+					jadeUtils.cookieOperator('weight', weight);
+					jadeUtils.cookieOperator('repeat', repeat);
+				},
+				error: function(xhr, errorType, error) { alert("Ajax Error!"); },
+				complete: function(xhr, status) {}
+			});
+	}
+};
 
 
 
