@@ -15116,6 +15116,7 @@ dmkk	存贮器
 dmkp	龙凤呈祥
 dmkr	耐听
 dmlf	布置
+dmlf	布署
 dmlh	面罩
 dmlp	布边
 dmlt	耐力
