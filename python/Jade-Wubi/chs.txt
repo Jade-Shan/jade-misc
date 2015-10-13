@@ -21589,6 +21589,7 @@ fqpu	无补
 fqpv	远
 fqpw	无穷
 fqpx	无它
+fqpy	无视
 fqpy	无礼
 fqpy	远祖
 fqqa	声名狼藉
@@ -21672,7 +21673,7 @@ fqwd	声色俱厉
 fqwf	均值
 fqwi	无偿
 fqwo	靎
-fqwr	组件
+fqwr	元件
 fqws	无何
 fqwt	无余
 fqwv	均分
