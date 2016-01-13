@@ -9,53 +9,11 @@
 <title>Jade Dungeon</title>
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="themes/hobbit/style/style.css" />
 <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
-<style>
-body {background: url(images/fantasy/bg.jpg); font: normal "Lucida Sans Unicode",sans-serif; }
-.ctx-main { border:solid transparent; border-width: 0px 15px 0px 15px; border-image:url(images/fantasy/bg-border.png) 0 15 0 15 round;
-	background: url(images/fantasy/bg-m.png) repeat-y center top; background-repeat:repeat; background-size:100%; padding:50px 0px 0px 0px; }
-.vestibule { padding-top: 20px; padding-bottom: 33%;
-	color: #FFC; background-image:url('images/fantasy/dungeon.png'); background-repeat:no-repeat; background-size:100% 100%; margin: 0px;  }
-.vestibule>h1 { font: bold 2.5em Verdana,serif; margin: 8px; } 
-.vestibule>p { color: #666; font-size: 1.7em; float: left; padding: 8px 0px 8px 10px; } 
-.content { background: url(images/fantasy/bgcontent.gif) no-repeat; background-size:100%; clear: both; font-size: 1.2em; padding: 0 38px 12px; }
-.content .spacer { height: 42px; }
-.footer { background: url(images/fantasy/bgfooter.gif) no-repeat; background-size:100%; margin: 0 auto; color: #666; font-size: 1.1em; line-height: 41px; text-align: center; }
-.footer .left {padding-left: 40px;}
-.footer .right {padding-right: 40px;}
-.footer a { color: #666; text-decoration: none; }
-.footer a:hover,.footer .right a:hover { color: #333; text-decoration: underline; }
-.footer .right, .footer .right a {color: #ACAF9B;}
-
-.item {clear: both;}
-.item img {border: 1px dashed #8A6;}
-.item .title { color: #445044; font: normal 2em serif; }
-.item .title:first-letter { display: block; float: left; font-size: 2.4em; }
-.item .metadata { color: #666; font-size: 0.9em; float: left; padding: 0 0 6px 4px; }
-.item .body { clear: both; }
-
-img.left {margin: 0 18px 6px 0;}
-a {color: #36C;}
-a:hover {color: #06F;}
-p,blockquote,ul {margin-bottom: 1.2em;}
-h1 {font: normal 1.6em serif;}
-h2 { font: bold 1em Verdana,serif; margin: 3px 0 1px; }
-blockquote { background: url(images/fantasy/quote.gif) no-repeat; color: #555; font: normal 1.4em serif; padding-left: 22px; border: 0px; }
-blockquote p {padding: 6px;}
-ul {margin-left: 1.8em;}
-
-.clearer { clear: both; display: block; font-size: 0; line-height: 0; height: 0; }
-.left {float: left;}
-.right {float: right;}
-
-.pattern { background: #334127 url(images/fantasy/pattern.gif) repeat-x; clear: both; height: 12px; }
-.divider { background: url(images/fantasy/divider.gif) no-repeat; background-size:100%; height: 20px; margin: 24px 0; }
-
-</style>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
@@ -65,7 +23,7 @@ ul {margin-left: 1.8em;}
 	</div>
 	<div class="collapse navbar-collapse" id="example-navbar-collapse">
 		<ul class="nav navbar-nav">
-			<li><a target="_blank" href="/study/wiki/wiki_html/index.html">Journal</a></li>
+			<li><a target="_blank" href="/index.html">Journal</a></li>
 			<li><a target="_blank" href="/study/wiki/wiki_html/index.html">Notes</a></li>
 			<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Me<b class="caret"></b></a>
@@ -96,7 +54,7 @@ ul {margin-left: 1.8em;}
 			<div class="metadata">Jun 13, 2006 by Vulputate</div>
 			<div class="body">
 				<p>In hac habitasse platea dictumst. Duis porttitor. Sed vulputate elementum nisl. Vivamus et mi at arcu mattis iaculis. Nullam posuere tristique tortor. Aenean ornare, <a href="index.html">nunc eget pretium</a> porttitor, sem est pretium leo.</p>
-				<img class="left" src="images/fantasy/map.jpg" width="180" height="152" alt="sample image"/>
+				<img class="left" src="themes/hobbit/images/map.jpg" width="180" height="152" alt="sample image"/>
 				<p>Aliquam risus justo, mollis in, laoreet a, consectetuer nec, risus. Nunc blandit sodales lacus. Nam luctus semper mi. In eu diam. Aliquam risus justo, mollis in, laoreet a, consectetuer nec, risus. Nunc blandit sodales lacus. Nam luctus semper mi. In eu diam. Aliquam risus justo, mollis in, laoreet a, consectetuer nec, risus. Nunc blandit sodales lacus. Nam luctus semper mi. In eu diam.</p>
 				<p>Fusce porta pede nec eros. Maecenas ipsum sem, interdum non, aliquam vitae, interdum nec, metus. Maecenas ornare lobortis risus. Etiam placerat varius mauris. Maecenas viverra. Sed feugiat. Donec mattis <a href="index.html">quam aliquam</a> risus. Nulla non felis sollicitudin urna blandit egestas. Integer et libero varius pede tristique ultricies. Cras nisl. Proin quis massa semper felis euismod ultricies.  </p>
 			</div>
