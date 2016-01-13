@@ -15116,6 +15116,7 @@ dmkk	存贮器
 dmkp	龙凤呈祥
 dmkr	耐听
 dmlf	布置
+dmlf	布署
 dmlh	面罩
 dmlp	布边
 dmlt	耐力
@@ -21588,6 +21589,7 @@ fqpu	无补
 fqpv	远
 fqpw	无穷
 fqpx	无它
+fqpy	无视
 fqpy	无礼
 fqpy	远祖
 fqqa	声名狼藉
@@ -21671,7 +21673,7 @@ fqwd	声色俱厉
 fqwf	均值
 fqwi	无偿
 fqwo	靎
-fqwr	组件
+fqwr	元件
 fqws	无何
 fqwt	无余
 fqwv	均分
@@ -68081,8 +68083,8 @@ txtg	繁重
 txth	籎
 txti	繁衍
 txtj	繁复
-txtk	自给自足
 txtk	每种
+txtk	自给自足
 txtp	毛细管
 txts	每条
 txtu	繁简
@@ -78226,8 +78228,8 @@ wwyk	伧
 wwyl	人为
 wwym	儁
 wwym	僋
-wwyn	仱
 wwyn	欲望
+wwyn	仱
 wwyo	人迹
 wwyo	僬
 wwyp	售货亭
