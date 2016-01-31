@@ -3875,6 +3875,7 @@ qmu	负
 qmw	钠
 qmy	钡
 qna	饶
+qnb	包
 qnb	饣
 qnc	饴
 qnd	锯
@@ -5047,8 +5048,8 @@ utd	疾
 ute	产
 ute	閁
 utf	冼
-uth	痄
 uth	首
+uth	痄
 utj	痢
 utk	阁
 utn	疙
@@ -5838,9 +5839,9 @@ ynh	盲
 yni	永
 yni	応
 ynj	鹿
-ynk	羸
-ynk	嬴
 ynk	启
+ynk	嬴
+ynk	羸
 ynm	遍
 ynn	记
 ynt	谧
