@@ -85560,3 +85560,5 @@ yyyw	议论
 yyyy	方言
 yyyy	文言
 yyyy	言
+yyyy	——
+yyyy	·
