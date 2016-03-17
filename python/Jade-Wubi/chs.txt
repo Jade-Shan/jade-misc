@@ -2389,8 +2389,8 @@ iuc	滚
 iud	洋
 iue	湔
 iuf	泮
-iug	漾
 iug	泣
+iug	漾
 iuj	漳
 iuk	涪
 ium	滴
@@ -4412,7 +4412,6 @@ sgk	梧
 sgk	酲
 sgl	楝
 sgm	柄
-sgn	醑
 sgn	配
 sgo	醚
 sgp	酡
@@ -63532,6 +63531,7 @@ tcwv	私分
 tcww	私人
 tcww	私欲
 tcwx	私货
+tcwy	私信
 tcwy	笃信
 tcxj	私费
 tcyb	私塾
@@ -68903,9 +68903,10 @@ udsw	送检
 udsy	拳术
 udtd	叛乱
 udte	减租
-udtf	状告
-udtf	送行
 udtf	头等
+udtf	送行
+udtf	叛徒
+udtf	状告
 udtg	养生
 udtg	郑重
 udtg	着重
@@ -85560,5 +85561,5 @@ yyyw	议论
 yyyy	方言
 yyyy	文言
 yyyy	言
-yyyy	——
-yyyy	·
+zzzz	——
+zzzz	·
