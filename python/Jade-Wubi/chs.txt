@@ -39955,6 +39955,7 @@ lknh	加收
 lknk	回避
 lknn	加快
 lknn	回忆
+lkny	圆心
 lkny	加以
 lkoe	加粗
 lkoo	回火
