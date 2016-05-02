@@ -408,6 +408,12 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 			}
 		}
 	};
+
+	self.webAuthBasic = function(username, password) {
+		var auth = 'Basic ' + jadeUtils.string.base64encode(
+				jadeUtils.string.utf16to8(username + ':' + password)); 
+		return auth;
+	};
 	
 	/**
 	 * cookie操作器

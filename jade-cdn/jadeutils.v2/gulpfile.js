@@ -30,7 +30,9 @@ gulp.task('check-js', function() {
 	});
 
 gulp.task('min-scripts', function() {
-	gulp.src(pathSrcScripts + '**/*.js')
+	gulp.src([pathSrcScripts + 'base.js', pathSrcScripts + 'dataStructure.js',
+		pathSrcScripts + 'instance.js'
+	])
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest(pathOutputScripts))
 		.pipe(rename({suffix: '.min'}))
