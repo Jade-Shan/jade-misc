@@ -2,6 +2,39 @@ String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
 String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
 String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
 
+/**
+ * add $.browser to compatible jQuery version less than 1.9
+ */
+(function ($) {
+	var matched, browser;
+
+	jQuery.uaMatch = function( ua ) {
+		ua = ua.toLowerCase();
+
+		var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) || /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+			/(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) || /(msie) ([\w.]+)/.exec( ua ) ||
+			ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) || [];
+
+		return {browser: match[ 1 ] || "", version: match[ 2 ] || "0"};
+	};
+
+	matched = jQuery.uaMatch( navigator.userAgent );
+	browser = {};
+
+	if ( matched.browser ) {
+		browser[ matched.browser ] = true;
+		browser.version = matched.version;
+	}
+
+	// Chrome is Webkit, but Webkit is also Safari.
+	if ( browser.chrome ) {
+		browser.webkit = true;
+	} else if ( browser.webkit ) {
+		browser.safari = true;
+	}
+
+})(jQuery);
+
 var net = net || {};
 net.jadedungeon = net.jadedungeon || {};
 net.jadedungeon.utils = net.jadedungeon.utils || {};
