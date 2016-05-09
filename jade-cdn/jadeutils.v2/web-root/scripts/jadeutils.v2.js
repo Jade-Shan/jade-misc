@@ -33,6 +33,8 @@ String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
 		browser.safari = true;
 	}
 
+	jQuery.browser = browser;
+
 })(jQuery);
 
 var net = net || {};
@@ -41,11 +43,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.utils.string = function () { init(); return this; };
-	var self = net.jadedungeon.utils.string.prototype;
+	var proto = net.jadedungeon.utils.string.prototype;
 	var init = function (cfg) {
 	};
 
-	self.formatNumber = function (num, scale) {
+	proto.formatNumber = function (num, scale) {
 		scale = scale > 0 && scale <= 20 ? scale : 2;
 		num = num.toFixed(scale) + "";
 		var l = num.split(".")[0].split("").reverse(), r = num.split(".")[1];
@@ -56,11 +58,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		return t.split("").reverse().join("") + "." + r;  
 	};
 
-	self.unformatNumber = function (number) {
+	proto.unformatNumber = function (number) {
 		return parseFloat(s.replace(/[^\d\.-]/g, ""));
 	};
 
-	self.utf16to8 = function (str) {
+	proto.utf16to8 = function (str) {
 		var out, i, len, c;
 
 		out = "";
@@ -81,7 +83,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		return out;
 	};
 	
-	self.utf8to16 = function (str) {
+	proto.utf8to16 = function (str) {
 		var out, i, len, c;
 		var char2, char3;
 
@@ -113,7 +115,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		return out;
 	};
 	
-	self.base64encode = function (str) {
+	proto.base64encode = function (str) {
 		var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + 
 			"abcdefghijklmnopqrstuvwxyz0123456789+/";
 		var out, i, len;
@@ -147,7 +149,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		return out;
 	};
 	
-	self.base64decode = function (str) {
+	proto.base64decode = function (str) {
 		var base64DecodeChars = new Array(
 				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 				-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -211,29 +213,29 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.utils.time= function () { init(); return this; };
-	var self = net.jadedungeon.utils.time.prototype;
+	var proto = net.jadedungeon.utils.time.prototype;
 	var init = function (cfg) {
 	};
 
-	self.addDay = function (date, days) {
+	proto.addDay = function (date, days) {
 		var newDate = new Date();
 		newDate.setDate(date.getDate() + days);
 		return newDate;
 	};
 	
-	self.cleanDay = function (date) {
+	proto.cleanDay = function (date) {
 		var newDate = new Date();
 		newDate.setTime(date.getTime());
 		newDate.setHours(0,0,0,0);
 		return newDate;
 	};
 
-	self.getLocalTimeZone = function () {
+	proto.getLocalTimeZone = function () {
 		var d = new Date();
 		return ("GMT" + d.getTimezoneOffset() / 60);
 	};
 
-	self.getLocalTimeZoneName = function () {
+	proto.getLocalTimeZoneName = function () {
 		var tmSummer = new Date(Date.UTC(2005, 6, 30, 0, 0, 0, 0));
 		var so = -1 * tmSummer.getTimezoneOffset();
 		var tmWinter = new Date(Date.UTC(2005, 12, 30, 0, 0, 0, 0));
@@ -306,9 +308,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		return 'Not in US';
 	};
 
-	self.getTimeArea = function (date, days) {
-			var d1 = self.cleanDay(date);
-			var d2 = self.cleanDay(self.addDay(d1, days));
+	proto.getTimeArea = function (date, days) {
+			var d1 = proto.cleanDay(date);
+			var d2 = proto.cleanDay(proto.addDay(d1, days));
 	
 			if (d1 < d2) {
 				return {floor: d1, ceil: d2};
@@ -317,7 +319,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 			}
 	};
 
-	self.getLocalTimeStr = function (date) {
+	proto.getLocalTimeStr = function (date) {
 		return  date.getFullYear() + "-" + (date.getMonth()+1) + "-" + 
 			date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + 
 			date.getSeconds();
@@ -329,21 +331,21 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.utils.validator= function () { init(); return this; };
-	var self = net.jadedungeon.utils.validator.prototype;
+	var proto = net.jadedungeon.utils.validator.prototype;
 	var init = function (cfg) {
 	};
 
 	/**
 	 * 验证姓名 中文字、英文字母、数字
 	 */
-	self.checkUsername = function (username) {
+	proto.checkUsername = function (username) {
 		return /^[\u4e00-\u9fa5a-z][\u4e00-\u9fa5a-z0-9 ]+$/i.test(username);
 	};
 
 	/**
 	 * 验证手机号
 	 */
-	self.checkMobile_zh_CN = function (phoneno) {
+	proto.checkMobile_zh_CN = function (phoneno) {
 		return /^1[3|4|5|8][0-9]\d{8}$/.test(phoneno);
 	};
 
@@ -351,7 +353,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	/**
 	 * 按文件扩展名检查是否是图片
 	 */
-	self.checkImageFilePostfix = function (postfix) {
+	proto.checkImageFilePostfix = function (postfix) {
 		if (!postfix.match(/.jpg|.gif|.png|.bmp/i)) {
 			return false;
 		}
@@ -361,7 +363,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
  /**
   * 验证图片大小
   */
- self.checkImageFileSize = function (fileInput, imgMaxSize) {
+ proto.checkImageFileSize = function (fileInput, imgMaxSize) {
  	var filePath = fileInput.value;
  	var fileExt = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
  	if (fileInput.files && fileInput.files[0]) {
@@ -401,11 +403,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.utils.web = function () { init(); return this; };
-	var self = net.jadedungeon.utils.web.prototype;
+	var proto = net.jadedungeon.utils.web.prototype;
 	var init = function (cfg) {
 	};
 
-	self.goUrl = function (url) {
+	proto.goUrl = function (url) {
 		var el = document.createElement("a");
 		document.body.appendChild(el);
 		el.href = url;
@@ -423,7 +425,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		}
 	};
 
-	self.openWindow = function (url) {
+	proto.openWindow = function (url) {
 		var el = document.createElement("a");
 		document.body.appendChild(el);
 		el.href = url;
@@ -442,7 +444,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		}
 	};
 
-	self.webAuthBasic = function(username, password) {
+	proto.webAuthBasic = function(username, password) {
 		var auth = 'Basic ' + jadeUtils.string.base64encode(
 				jadeUtils.string.utf16to8(username + ':' + password)); 
 		return auth;
@@ -459,7 +461,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 *            其他选项
 	 * @returns
 	 */
-	self.cookieOperator = function (name, value, options) {
+	proto.cookieOperator = function (name, value, options) {
 		if (typeof value != 'undefined') {
 			options = options || {};
 			if (value === null) {
@@ -507,14 +509,14 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.utils.i18n = function (data) { init(data); return this; };
-	var self = net.jadedungeon.utils.i18n.prototype;
+	var proto = net.jadedungeon.utils.i18n.prototype;
 
 	var init = function (data) {
-		self.msg = data || {};
+		proto.msg = data || {};
 	};
 	
-	self.get = function (key) {
-		return self.msg[key];
+	proto.get = function (key) {
+		return proto.msg[key];
 	};
 
 })(jQuery);
@@ -523,7 +525,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
 	net.jadedungeon.dataStructure = function () { init(); return this; };
-	var self = net.jadedungeon.dataStructure.prototype;
+	var proto = net.jadedungeon.dataStructure.prototype;
 	var init = function (cfg) {
 	};
 
@@ -553,32 +555,32 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 */
 	(function ($) {
 		net.jadedungeon.dataStructure.Map = function () { init(); return this; };
-		var mapSelf = net.jadedungeon.dataStructure.Map.prototype;
+		var mapProto = net.jadedungeon.dataStructure.Map.prototype;
 		var init = function (initData) {
-			mapSelf.elements = initData || [];
+			mapProto.elements = initData || [];
 		};
 
 		//获取MAP元素个数
-		mapSelf.size = function() { return mapSelf.elements.length; };
+		mapProto.size = function() { return mapProto.elements.length; };
 
 		//判断MAP是否为空
-		mapSelf.isEmpty = function() { return (mapSelf.elements.length < 1); };
+		mapProto.isEmpty = function() { return (mapProto.elements.length < 1); };
 
 		//删除MAP所有元素
-		mapSelf.removeAll = function() { mapSelf.elements = []; };
+		mapProto.removeAll = function() { mapProto.elements = []; };
 
 		//向MAP中增加元素（key, value) 
-		mapSelf.put = function(_key, _value) {
-			mapSelf.elements.push({ key : _key, value : _value });
+		mapProto.put = function(_key, _value) {
+			mapProto.elements.push({ key : _key, value : _value });
 		};
 
 		//删除指定KEY的元素，成功返回True，失败返回False
-		mapSelf.remove = function(_key) {
+		mapProto.remove = function(_key) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapSelf.elements.length; i++) {
-					if (mapSelf.elements[i].key == _key) {
-						mapSelf.elements.splice(i, 1);
+				for (i = 0; i < mapProto.elements.length; i++) {
+					if (mapProto.elements[i].key == _key) {
+						mapProto.elements.splice(i, 1);
 						return true;
 					}
 				}
@@ -587,11 +589,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		};
 
 		//获取指定KEY的元素值VALUE，失败返回NULL
-		mapSelf.get = function(_key) {
+		mapProto.get = function(_key) {
 			try {
-				for (i = 0; i < mapSelf.elements.length; i++) {
-					if (mapSelf.elements[i].key == _key) {
-						return mapSelf.elements[i].value;
+				for (i = 0; i < mapProto.elements.length; i++) {
+					if (mapProto.elements[i].key == _key) {
+						return mapProto.elements[i].value;
 					}
 				}
 			} catch (e) { return null; }
@@ -599,49 +601,49 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 		//获取指定索引的元素（使用element.key，element.value获取KEY和VALUE），
 		//失败返回NULL
-		mapSelf.element = function(_index) {
-			if (_index < 0 || _index >= mapSelf.elements.length) {
+		mapProto.element = function(_index) {
+			if (_index < 0 || _index >= mapProto.elements.length) {
 				return null;
 			}
-			return mapSelf.elements[_index];
+			return mapProto.elements[_index];
 		};
 
 		//判断MAP中是否含有指定KEY的元素
-		mapSelf.containsKey = function(_key) {
+		mapProto.containsKey = function(_key) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapSelf.elements.length; i++) {
-					if (mapSelf.elements[i].key == _key) { bln = true; }
+				for (i = 0; i < mapProto.elements.length; i++) {
+					if (mapProto.elements[i].key == _key) { bln = true; }
 				}
 			} catch (e) { bln = false; }
 			return bln;
 		};
 
 		//判断MAP中是否含有指定VALUE的元素
-		mapSelf.containsValue = function(_value) {
+		mapProto.containsValue = function(_value) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapSelf.elements.length; i++) {
-					if (mapSelf.elements[i].value == _value) { bln = true; }
+				for (i = 0; i < mapProto.elements.length; i++) {
+					if (mapProto.elements[i].value == _value) { bln = true; }
 				}
 			} catch (e) { bln = false; }
 			return bln;
 		};
 
 		//获取MAP中所有VALUE的数组（ARRAY）
-		mapSelf.values = function() {
+		mapProto.values = function() {
 			var arr = [];
-			for (i = 0; i < mapSelf.elements.length; i++) {
-				arr.push(mapSelf.elements[i].value);
+			for (i = 0; i < mapProto.elements.length; i++) {
+				arr.push(mapProto.elements[i].value);
 			}
 			return arr;
 		};
 
 		//获取MAP中所有KEY的数组（ARRAY）
-		mapSelf.keys = function() {
+		mapProto.keys = function() {
 			var arr = [];
-			for (i = 0; i < mapSelf.elements.length; i++) {
-				arr.push(mapSelf.elements[i].key);
+			for (i = 0; i < mapProto.elements.length; i++) {
+				arr.push(mapProto.elements[i].key);
 			}
 			return arr;
 		};
@@ -653,9 +655,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 */
 	(function ($) {
 		net.jadedungeon.dataStructure.Stack = function () { init(); return this; };
-		var stackSelf = net.jadedungeon.dataStructure.Stack.prototype;
+		var stackProto = net.jadedungeon.dataStructure.Stack.prototype;
 		var init = function (initData) {
-			stackSelf.aElement = initData || []; // 存储元素数组
+			stackProto.aElement = initData || []; // 存储元素数组
 		};
 
 		/**
@@ -664,13 +666,13 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * @param: 入栈元素列表
 		 * @return: 堆栈元素个数
 		 */
-		stackSelf.push = function(vElement) {
+		stackProto.push = function(vElement) {
 			if (arguments.length === 0) return -1;
 			// 元素入栈
 			for ( var i = 0; i < arguments.length; i += 1) {
-				stackSelf.aElement.push(arguments[i]);
+				stackProto.aElement.push(arguments[i]);
 			}
-			return stackSelf.aElement.length;
+			return stackProto.aElement.length;
 		};
 
 		/**
@@ -678,11 +680,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		stackSelf.pop = function() {
-			if (stackSelf.aElement.length === 0)
+		stackProto.pop = function() {
+			if (stackProto.aElement.length === 0)
 				return null;
 			else
-				return stackSelf.aElement.pop();
+				return stackProto.aElement.pop();
 		};
 
 		/**
@@ -690,32 +692,32 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 元素个数
 		 */
-		stackSelf.size = function() { return stackSelf.aElement.length; };
+		stackProto.size = function() { return stackProto.aElement.length; };
 
 		/**
 		 * 返回栈顶元素值 若堆栈为空则返回null
 		 * 
 		 * @return: vElement
 		 */
-		stackSelf.getTop = function() {
-			if (stackSelf.aElement.length === 0)
+		stackProto.getTop = function() {
+			if (stackProto.aElement.length === 0)
 				return null;
 			else
-				return stackSelf.aElement[stackSelf.aElement.length - 1];
+				return stackProto.aElement[stackProto.aElement.length - 1];
 		};
 
 		/**
 		 * 将堆栈置空
 		 */
-		stackSelf.removeAll = function() { stackSelf.aElement.length = 0; };
+		stackProto.removeAll = function() { stackProto.aElement.length = 0; };
 
 		/**
 		 * 判断堆栈是否为空
 		 * 
 		 * @return: 堆栈为空返回true,否则返回false
 		 */
-		stackSelf.isEmpty = function() {
-			if (stackSelf.aElement.length === 0)
+		stackProto.isEmpty = function() {
+			if (stackProto.aElement.length === 0)
 				return true;
 			else
 				return false;
@@ -726,9 +728,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 堆栈元素字符串
 		 */
-		stackSelf.toString = function() {
-			var sResult = (stackSelf.aElement.reverse()).toString();
-			stackSelf.aElement.reverse();
+		stackProto.toString = function() {
+			var sResult = (stackProto.aElement.reverse()).toString();
+			stackProto.aElement.reverse();
 			return sResult;
 		};
 	})(jQuery);
@@ -739,9 +741,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 */
 	(function ($) {
 		net.jadedungeon.dataStructure.Queue = function () { init(); return this; };
-		var queueSelf = net.jadedungeon.dataStructure.Queue.prototype;
+		var queueProto = net.jadedungeon.dataStructure.Queue.prototype;
 		var init = function (cfg) {
-			queueSelf.aElement = []; // 存储元素数组
+			queueProto.aElement = []; // 存储元素数组
 		};
 
 		/**
@@ -750,11 +752,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * @param: vElement元素列表
 		 * @return: 返回当前队列元素个数
 		 */
-		queueSelf.push = function(vElement) {
+		queueProto.push = function(vElement) {
 			if (arguments.length === 0) return -1;
 			// 元素入队
-			for ( var i = 0; i < arguments.length; i += 1) { queueSelf.aElement.push(arguments[i]); }
-			return queueSelf.aElement.length;
+			for ( var i = 0; i < arguments.length; i += 1) { queueProto.aElement.push(arguments[i]); }
+			return queueProto.aElement.length;
 		};
 
 		/**
@@ -762,11 +764,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		queueSelf.pop = function() {
-			if (queueSelf.aElement.length === 0)
+		queueProto.pop = function() {
+			if (queueProto.aElement.length === 0)
 				return null;
 			else
-				return queueSelf.aElement.shift();
+				return queueProto.aElement.shift();
 		};
 
 		/**
@@ -774,18 +776,18 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 元素个数
 		 */
-		queueSelf.size = function() { return queueSelf.aElement.length; };
+		queueProto.size = function() { return queueProto.aElement.length; };
 
 		/**
 		 * 返回队头素值 若队列为空则返回null
 		 * 
 		 * @return: vElement
 		 */
-		queueSelf.GetHead = function() {
-			if (queueSelf.aElement.length === 0)
+		queueProto.GetHead = function() {
+			if (queueProto.aElement.length === 0)
 				return null;
 			else
-				return queueSelf.aElement[0];
+				return queueProto.aElement[0];
 		};
 
 		/**
@@ -793,25 +795,25 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		queueSelf.GetEnd = function() {
-			if (queueSelf.aElement.length === 0)
+		queueProto.GetEnd = function() {
+			if (queueProto.aElement.length === 0)
 				return null;
 			else
-				return queueSelf.aElement[queueSelf.aElement.length - 1];
+				return queueProto.aElement[queueProto.aElement.length - 1];
 		};
 
 		/**
 		 * 将队列置空
 		 */
-		queueSelf.removeAll = function() { queueSelf.aElement.length = 0; };
+		queueProto.removeAll = function() { queueProto.aElement.length = 0; };
 
 		/**
 		 * 判断队列是否为空
 		 * 
 		 * @return: 队列为空返回true,否则返回false
 		 */
-		queueSelf.isEmpty = function() {
-			if (queueSelf.aElement.length === 0)
+		queueProto.isEmpty = function() {
+			if (queueProto.aElement.length === 0)
 				return true;
 			else
 				return false;
@@ -822,9 +824,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 队列元素字符串
 		 */
-		queueSelf.toString = function() {
-			var sResult = (queueSelf.aElement.reverse()).toString();
-			queueSelf.aElement.reverse();
+		queueProto.toString = function() {
+			var sResult = (queueProto.aElement.reverse()).toString();
+			queueProto.aElement.reverse();
 			return sResult;
 		};
 	})(jQuery);
@@ -832,7 +834,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 	(function () {
 		net.jadedungeon.dataStructure.TreeNode = function () { init(); return this; };
-		var treeNodeSelf = net.jadedungeon.dataStructure.TreeNode.prototype;
+		var treeNodeProto = net.jadedungeon.dataStructure.TreeNode.prototype;
 		var init = function (cfg) {
 		};
 
