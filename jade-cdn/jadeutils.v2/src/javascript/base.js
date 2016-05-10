@@ -42,10 +42,10 @@ net.jadedungeon = net.jadedungeon || {};
 net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 (function ($) {
-	net.jadedungeon.utils.string = function () { init(); return this; };
+	net.jadedungeon.utils.string = function () { this.init(); return this; };
 	var proto = net.jadedungeon.utils.string.prototype;
-	var init = function (cfg) {
-	};
+
+	proto.init = function (cfg) { };
 
 	proto.formatNumber = function (num, scale) {
 		scale = scale > 0 && scale <= 20 ? scale : 2;
@@ -212,10 +212,10 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 
 (function ($) {
-	net.jadedungeon.utils.time= function () { init(); return this; };
+	net.jadedungeon.utils.time= function () { this.init(); return this; };
 	var proto = net.jadedungeon.utils.time.prototype;
-	var init = function (cfg) {
-	};
+
+	proto.init = function (cfg) { };
 
 	proto.addDay = function (date, days) {
 		var newDate = new Date();
@@ -330,10 +330,10 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 
 (function ($) {
-	net.jadedungeon.utils.validator= function () { init(); return this; };
+	net.jadedungeon.utils.validator= function () { this.init(); return this; };
 	var proto = net.jadedungeon.utils.validator.prototype;
-	var init = function (cfg) {
-	};
+
+	proto.init = function (cfg) { };
 
 	/**
 	 * 验证姓名 中文字、英文字母、数字
@@ -402,10 +402,10 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 
 (function ($) {
-	net.jadedungeon.utils.web = function () { init(); return this; };
+	net.jadedungeon.utils.web = function () { this.init(); return this; };
 	var proto = net.jadedungeon.utils.web.prototype;
-	var init = function (cfg) {
-	};
+
+	proto.init = function (cfg) { };
 
 	proto.goUrl = function (url) {
 		var el = document.createElement("a");
@@ -508,15 +508,17 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 
 (function ($) {
-	net.jadedungeon.utils.i18n = function (data) { init(data); return this; };
+	net.jadedungeon.utils.i18n = function (data) { this.init(data); return this; };
 	var proto = net.jadedungeon.utils.i18n.prototype;
 
-	var init = function (data) {
-		proto.msg = data || {};
+	proto.init = function (data) {
+		var self = this;
+		self.msg = data || {};
 	};
 	
 	proto.get = function (key) {
-		return proto.msg[key];
+		var self = this;
+		return self.msg[key];
 	};
 
 })(jQuery);
