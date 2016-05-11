@@ -41,7 +41,6 @@
 		//删除MAP所有元素
 		proto.removeAll = function() { this.elements = []; };
 
-		//向MAP中增加元素（key, value) 
 		proto.put = function(_key, _value) {
 			this.elements.push({ key : _key, value : _value });
 		};
