@@ -526,13 +526,12 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 
 (function ($) {
-	net.jadedungeon.dataStructure = function () { init(); return this; };
-	var proto = net.jadedungeon.dataStructure.prototype;
-	var init = function (cfg) {
-	};
+	net.jadedungeon.dataStructure = {};
 
-	/*
+	/**
 	 * MAP对象，实现MAP功能
+	 *
+	 * 构造函数：var m = new net.jadedungeon.dataStructure.Map([{"key":"a","value":1},{"key":"b","value":2}]);
 	 *
 	 * 接口：
 	 * size()     获取MAP元素个数
@@ -541,7 +540,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 * put(key, value)   向MAP中增加元素（key, value) 
 	 * remove(key)    删除指定KEY的元素，成功返回True，失败返回False
 	 * get(key)    获取指定KEY的元素值VALUE，失败返回NULL
-	 * element(index)   获取指定索引的元素（使用element.key，element.value获取KEY和VALUE），失败返回NULL
+	 * getElementByIndex(index)   获取指定索引的元素
 	 * containsKey(key)  判断MAP中是否含有指定KEY的元素
 	 * containsValue(value) 判断MAP中是否含有指定VALUE的元素
 	 * values()    获取MAP中所有VALUE的数组（ARRAY）
@@ -556,33 +555,31 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 *
 	 */
 	(function ($) {
-		net.jadedungeon.dataStructure.Map = function () { init(); return this; };
-		var mapProto = net.jadedungeon.dataStructure.Map.prototype;
-		var init = function (initData) {
-			mapProto.elements = initData || [];
+		net.jadedungeon.dataStructure.Map = function (initData) {
+			this.init(initData); return this; 
 		};
+		var proto = net.jadedungeon.dataStructure.Map.prototype;
 
+		proto.init= function (initData) { this.elements = initData || []; };
 		//获取MAP元素个数
-		mapProto.size = function() { return mapProto.elements.length; };
-
+		proto.size = function() { return this.elements.length; };
 		//判断MAP是否为空
-		mapProto.isEmpty = function() { return (mapProto.elements.length < 1); };
-
+		proto.isEmpty = function() { return (this.elements.length < 1); };
 		//删除MAP所有元素
-		mapProto.removeAll = function() { mapProto.elements = []; };
+		proto.removeAll = function() { this.elements = []; };
 
 		//向MAP中增加元素（key, value) 
-		mapProto.put = function(_key, _value) {
-			mapProto.elements.push({ key : _key, value : _value });
+		proto.put = function(_key, _value) {
+			this.elements.push({ key : _key, value : _value });
 		};
 
 		//删除指定KEY的元素，成功返回True，失败返回False
-		mapProto.remove = function(_key) {
+		proto.remove = function(_key) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapProto.elements.length; i++) {
-					if (mapProto.elements[i].key == _key) {
-						mapProto.elements.splice(i, 1);
+				for (i = 0; i < this.elements.length; i++) {
+					if (this.elements[i].key == _key) {
+						this.elements.splice(i, 1);
 						return true;
 					}
 				}
@@ -591,61 +588,61 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		};
 
 		//获取指定KEY的元素值VALUE，失败返回NULL
-		mapProto.get = function(_key) {
+		proto.get = function(_key) {
 			try {
-				for (i = 0; i < mapProto.elements.length; i++) {
-					if (mapProto.elements[i].key == _key) {
-						return mapProto.elements[i].value;
+				for (i = 0; i < this.elements.length; i++) {
+					if (this.elements[i].key == _key) {
+						return this.elements[i].value;
 					}
 				}
 			} catch (e) { return null; }
 		};
 
-		//获取指定索引的元素（使用element.key，element.value获取KEY和VALUE），
+		//获取指定索引的元素（使用getElementByIndex.key，getElementByIndex.value获取KEY和VALUE），
 		//失败返回NULL
-		mapProto.element = function(_index) {
-			if (_index < 0 || _index >= mapProto.elements.length) {
+		proto.getElementByIndex = function(_index) {
+			if (_index < 0 || _index >= this.elements.length) {
 				return null;
 			}
-			return mapProto.elements[_index];
+			return this.elements[_index];
 		};
 
 		//判断MAP中是否含有指定KEY的元素
-		mapProto.containsKey = function(_key) {
+		proto.containsKey = function(_key) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapProto.elements.length; i++) {
-					if (mapProto.elements[i].key == _key) { bln = true; }
+				for (i = 0; i < this.elements.length; i++) {
+					if (this.elements[i].key == _key) { bln = true; }
 				}
 			} catch (e) { bln = false; }
 			return bln;
 		};
 
 		//判断MAP中是否含有指定VALUE的元素
-		mapProto.containsValue = function(_value) {
+		proto.containsValue = function(_value) {
 			var bln = false;
 			try {
-				for (i = 0; i < mapProto.elements.length; i++) {
-					if (mapProto.elements[i].value == _value) { bln = true; }
+				for (i = 0; i < this.elements.length; i++) {
+					if (this.elements[i].value == _value) { bln = true; }
 				}
 			} catch (e) { bln = false; }
 			return bln;
 		};
 
 		//获取MAP中所有VALUE的数组（ARRAY）
-		mapProto.values = function() {
+		proto.values = function() {
 			var arr = [];
-			for (i = 0; i < mapProto.elements.length; i++) {
-				arr.push(mapProto.elements[i].value);
+			for (i = 0; i < this.elements.length; i++) {
+				arr.push(this.elements[i].value);
 			}
 			return arr;
 		};
 
 		//获取MAP中所有KEY的数组（ARRAY）
-		mapProto.keys = function() {
+		proto.keys = function() {
 			var arr = [];
-			for (i = 0; i < mapProto.elements.length; i++) {
-				arr.push(mapProto.elements[i].key);
+			for (i = 0; i < this.elements.length; i++) {
+				arr.push(this.elements[i].key);
 			}
 			return arr;
 		};
@@ -656,11 +653,12 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 * 定义堆栈类 实现堆栈基本功能
 	 */
 	(function ($) {
-		net.jadedungeon.dataStructure.Stack = function () { init(); return this; };
-		var stackProto = net.jadedungeon.dataStructure.Stack.prototype;
-		var init = function (initData) {
-			stackProto.aElement = initData || []; // 存储元素数组
+		net.jadedungeon.dataStructure.Stack = function (initData) { 
+			this.init(initData); return this; 
 		};
+		var proto = net.jadedungeon.dataStructure.Stack.prototype;
+
+		proto.init= function (initData) { this.elements = initData || []; };
 
 		/**
 		 * 元素入栈 1.Push方法参数可以多个 2.参数为空时返回-1
@@ -668,13 +666,13 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * @param: 入栈元素列表
 		 * @return: 堆栈元素个数
 		 */
-		stackProto.push = function(vElement) {
+		proto.push = function(vElement) {
 			if (arguments.length === 0) return -1;
 			// 元素入栈
 			for ( var i = 0; i < arguments.length; i += 1) {
-				stackProto.aElement.push(arguments[i]);
+				this.elements.push(arguments[i]);
 			}
-			return stackProto.aElement.length;
+			return this.elements.length;
 		};
 
 		/**
@@ -682,11 +680,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		stackProto.pop = function() {
-			if (stackProto.aElement.length === 0)
+		proto.pop = function() {
+			if (this.elements.length === 0)
 				return null;
 			else
-				return stackProto.aElement.pop();
+				return this.elements.pop();
 		};
 
 		/**
@@ -694,32 +692,32 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 元素个数
 		 */
-		stackProto.size = function() { return stackProto.aElement.length; };
+		proto.size = function() { return this.elements.length; };
 
 		/**
 		 * 返回栈顶元素值 若堆栈为空则返回null
 		 * 
 		 * @return: vElement
 		 */
-		stackProto.getTop = function() {
-			if (stackProto.aElement.length === 0)
+		proto.getTop = function() {
+			if (this.elements.length === 0)
 				return null;
 			else
-				return stackProto.aElement[stackProto.aElement.length - 1];
+				return this.elements[this.elements.length - 1];
 		};
 
 		/**
 		 * 将堆栈置空
 		 */
-		stackProto.removeAll = function() { stackProto.aElement.length = 0; };
+		proto.removeAll = function() { this.elements.length = 0; };
 
 		/**
 		 * 判断堆栈是否为空
 		 * 
 		 * @return: 堆栈为空返回true,否则返回false
 		 */
-		stackProto.isEmpty = function() {
-			if (stackProto.aElement.length === 0)
+		proto.isEmpty = function() {
+			if (this.elements.length === 0)
 				return true;
 			else
 				return false;
@@ -730,9 +728,9 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 堆栈元素字符串
 		 */
-		stackProto.toString = function() {
-			var sResult = (stackProto.aElement.reverse()).toString();
-			stackProto.aElement.reverse();
+		proto.toString = function() {
+			var sResult = (this.elements.reverse()).toString();
+			this.elements.reverse();
 			return sResult;
 		};
 	})(jQuery);
@@ -742,11 +740,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	 * 定义队列类 实现队列基本功能
 	 */
 	(function ($) {
-		net.jadedungeon.dataStructure.Queue = function () { init(); return this; };
-		var queueProto = net.jadedungeon.dataStructure.Queue.prototype;
-		var init = function (cfg) {
-			queueProto.aElement = []; // 存储元素数组
+		net.jadedungeon.dataStructure.Queue = function (initData) { 
+			this.init(initData); return this; 
 		};
+		var proto = net.jadedungeon.dataStructure.Queue.prototype;
+		proto.init = function (initData) { this.elements = initData || []; };
 
 		/**
 		 * 元素入队 1.EnQueue方法参数可以多个 2.参数为空时返回-1
@@ -754,11 +752,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * @param: vElement元素列表
 		 * @return: 返回当前队列元素个数
 		 */
-		queueProto.push = function(vElement) {
+		proto.push = function(vElement) {
 			if (arguments.length === 0) return -1;
 			// 元素入队
-			for ( var i = 0; i < arguments.length; i += 1) { queueProto.aElement.push(arguments[i]); }
-			return queueProto.aElement.length;
+			for ( var i = 0; i < arguments.length; i += 1) { this.elements.push(arguments[i]); }
+			return this.elements.length;
 		};
 
 		/**
@@ -766,11 +764,11 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		queueProto.pop = function() {
-			if (queueProto.aElement.length === 0)
+		proto.pop = function() {
+			if (this.elements.length === 0)
 				return null;
 			else
-				return queueProto.aElement.shift();
+				return this.elements.shift();
 		};
 
 		/**
@@ -778,18 +776,18 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 元素个数
 		 */
-		queueProto.size = function() { return queueProto.aElement.length; };
+		proto.size = function() { return this.elements.length; };
 
 		/**
 		 * 返回队头素值 若队列为空则返回null
 		 * 
 		 * @return: vElement
 		 */
-		queueProto.GetHead = function() {
-			if (queueProto.aElement.length === 0)
+		proto.GetHead = function() {
+			if (this.elements.length === 0)
 				return null;
 			else
-				return queueProto.aElement[0];
+				return this.elements[0];
 		};
 
 		/**
@@ -797,25 +795,25 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: vElement
 		 */
-		queueProto.GetEnd = function() {
-			if (queueProto.aElement.length === 0)
+		proto.GetEnd = function() {
+			if (this.elements.length === 0)
 				return null;
 			else
-				return queueProto.aElement[queueProto.aElement.length - 1];
+				return this.elements[this.elements.length - 1];
 		};
 
 		/**
 		 * 将队列置空
 		 */
-		queueProto.removeAll = function() { queueProto.aElement.length = 0; };
+		proto.removeAll = function() { this.elements.length = 0; };
 
 		/**
 		 * 判断队列是否为空
 		 * 
 		 * @return: 队列为空返回true,否则返回false
 		 */
-		queueProto.isEmpty = function() {
-			if (queueProto.aElement.length === 0)
+		proto.isEmpty = function() {
+			if (this.elements.length === 0)
 				return true;
 			else
 				return false;
@@ -826,18 +824,18 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		 * 
 		 * @return: 队列元素字符串
 		 */
-		queueProto.toString = function() {
-			var sResult = (queueProto.aElement.reverse()).toString();
-			queueProto.aElement.reverse();
+		proto.toString = function() {
+			var sResult = (this.elements.reverse()).toString();
+			this.elements.reverse();
 			return sResult;
 		};
 	})(jQuery);
 
 
 	(function () {
-		net.jadedungeon.dataStructure.TreeNode = function () { init(); return this; };
-		var treeNodeProto = net.jadedungeon.dataStructure.TreeNode.prototype;
-		var init = function (cfg) {
+		net.jadedungeon.dataStructure.TreeNode = function () { this.init(); return this; };
+		var proto = net.jadedungeon.dataStructure.TreeNode.prototype;
+		proto.init= function (cfg) {
 		};
 
 	})();
@@ -847,7 +845,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 var jadeUtils = jadeUtils || {};
 jadeUtils.string = new net.jadedungeon.utils.string(); 
 jadeUtils.time = new net.jadedungeon.utils.time(); 
-jadeUtils.dataStructure = new net.jadedungeon.dataStructure(); 
+jadeUtils.dataStructure = net.jadedungeon.dataStructure; 
 jadeUtils.validator = new net.jadedungeon.utils.validator(); 
 jadeUtils.web = new net.jadedungeon.utils.web(); 
 
