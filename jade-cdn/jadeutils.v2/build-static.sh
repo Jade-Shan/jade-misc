@@ -29,7 +29,7 @@ do
 #			gulp min-styles-hobbit  ;
 			gulp min-scripts ;
 			sleep 5 ;
-			# qrsync ~/.config/qiniu/workout.json ;
+			# qrsync ~/.config/qiniu/jadeutils.v2.json;
 			;;
 		?)  #当有不认识的选项的时候arg为?
 			exit 1
