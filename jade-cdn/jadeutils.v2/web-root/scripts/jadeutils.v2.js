@@ -1,6 +1,53 @@
 String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
 String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
 String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
+/**
+ * 字符串格式化工具，用下标来替换
+ *
+ * 例："我是{0}，今年{1}了".format("loogn",22);
+ */
+String.prototype.format = function(args) {
+	var result = this;
+	if (arguments.length < 1) { return result; }
+
+	//如果模板参数是数组
+	var data = arguments;        
+	//如果模板参数是对象
+	if (arguments.length == 1 && typeof (args) == "object") { data = args; }
+	for (var key in data) {
+		var value = data[key];
+		if (undefined !== value) { result = result.replace("{" + key + "}", value); }
+	}
+	return result;
+};
+
+/**
+ * 替换所有匹配exp的字符串为指定字符串
+ * @param exp 被替换部分的正则
+ * @param newStr 替换成的字符串
+ */
+String.prototype.replaceAll = function (exp, newStr) {
+	return this.replace(new RegExp(exp, "gm"), newStr);
+};
+
+/**
+ * 字符串格式化工具，用名称来替换
+ * 例： "我是{name}，今年{age}了".format({name:"loogn",age:22});
+ */
+String.prototype.format = function(args) {
+	var result = this;
+	if (arguments.length < 1) { return result; }
+
+	var data = arguments; // 如果模板参数是数组
+	// 如果模板参数是对象
+	if (arguments.length == 1 && typeof (args) == "object") { data = args; }
+	for (var key in data) {
+		var value = data[key];
+		if (undefined !== value) { result = result.replaceAll("\\{" + key + "\\}", value); }
+	}
+	return result;
+};
+
 
 /**
  * add $.browser to compatible jQuery version less than 1.9
@@ -568,7 +615,6 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		//删除MAP所有元素
 		proto.removeAll = function() { this.elements = []; };
 
-		//向MAP中增加元素（key, value) 
 		proto.put = function(_key, _value) {
 			this.elements.push({ key : _key, value : _value });
 		};
