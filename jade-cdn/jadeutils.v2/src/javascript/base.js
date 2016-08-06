@@ -1,6 +1,69 @@
 String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
 String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
 String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
+/** 四舍五入：  Number(num).toFixed(size); */
+/**
+ * 加法得到金额数据（保留精度问题）
+ * 调用例子：var total = Number(0.09999999).add(0.09999999);
+ * @param num
+ * @returns {String}
+ */
+Number.prototype.add = function(num) {
+	var r1, r2, m;
+	try { r1 = this.toString().split(".")[1].length; } catch(e) { r1=0; }
+	try { r2 =  num.toString().split(".")[1].length; } catch(e) { r2=0; }
+	m = Math.pow(10,Math.max(r1,r2));
+
+	var val = (this * m + num * m) / m;
+	m = val.toString();
+	var tmpNum = m.split(".");
+	if (tmpNum.length>1) { var l = tmpNum[1]; if(l.length < 2){ m = m + "0"; } }
+	return m;
+};
+/**
+ * 减法得到金额数据（保留精度问题）
+ * 调用例子：var total = Number(-0.09999999).sub(0.00000001);
+ * @param num
+ * @returns {String}
+ */
+Number.prototype.sub = function (num) { return this.add(-num); };
+/**
+ * 乘法得到金额数据（保留精度问题）
+ * 调用例子：var total = Number(parseInt(num)).mul(parseFloat(dj));
+ * @param num
+ * @returns {String}
+ */
+Number.prototype.mul = function (num) {
+	var m = 0, s1 = this.toString(), s2 = num.toString();
+	try{ m+=s1.split(".")[1].length; } catch (e) {}
+	try{ m+=s2.split(".")[1].length; } catch (e) {}
+
+	var val = Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+	m = val.toString();
+	var tmpNum = m.split(".");
+	if (tmpNum.length>1) {
+		var l = tmpNum[1];
+		if(l.length<2){
+			m = m + "0";
+		}
+	}
+	return m;
+};
+/**
+ * 除法得到金额数据（保留精度问题）
+ * 调用例子：var total = Number(0.000001).div(0.00000001);
+ * @param num
+ * @returns {String}
+ */
+Number.prototype.div = function (num) {
+	var t1 = 0, t2 = 0, r1, r2;
+	try { t1 = this.toString().split(".")[1].length; } catch (e) {}
+	try { t2 =  num.toString().split(".")[1].length; } catch (e) {}
+	r1 = Number(this.toString().replace(".",""));
+	r2 = Number(num.toString().replace(".",""));
+	return (r1 / r2) * Math.pow(10, t2 - t1);
+};
+
 /**
  * 字符串格式化工具，用下标来替换
  *
@@ -11,7 +74,7 @@ String.prototype.format = function(args) {
 	if (arguments.length < 1) { return result; }
 
 	//如果模板参数是数组
-	var data = arguments;        
+	var data = arguments;
 	//如果模板参数是对象
 	if (arguments.length == 1 && typeof (args) == "object") { data = args; }
 	for (var key in data) {
@@ -99,10 +162,10 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		num = num.toFixed(scale) + "";
 		var l = num.split(".")[0].split("").reverse(), r = num.split(".")[1];
 		var t = "";
-		for (var i = 0; i < l.length; i++) {  
-			t += l[i] + ((i + 1) % 3 === 0 && (i + 1) != l.length ? "," : "");  
-		}  
-		return t.split("").reverse().join("") + "." + r;  
+		for (var i = 0; i < l.length; i++) {
+			t += l[i] + ((i + 1) % 3 === 0 && (i + 1) != l.length ? "," : "");
+		}
+		return t.split("").reverse().join("") + "." + r;
 	};
 
 	proto.unformatNumber = function (number) {
@@ -163,7 +226,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	};
 	
 	proto.base64encode = function (str) {
-		var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + 
+		var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
 			"abcdefghijklmnopqrstuvwxyz0123456789+/";
 		var out, i, len;
 		var c1, c2, c3;
@@ -367,8 +430,8 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	};
 
 	proto.getLocalTimeStr = function (date) {
-		return  date.getFullYear() + "-" + (date.getMonth()+1) + "-" + 
-			date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + 
+		return  date.getFullYear() + "-" + (date.getMonth()+1) + "-" +
+			date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" +
 			date.getSeconds();
 	};
 
@@ -493,13 +556,13 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 
 	proto.webAuthBasic = function(username, password) {
 		var auth = 'Basic ' + jadeUtils.string.base64encode(
-				jadeUtils.string.utf16to8(username + ':' + password)); 
+				jadeUtils.string.utf16to8(username + ':' + password));
 		return auth;
 	};
 	
 	/**
 	 * cookie操作器
-	 * 
+	 *
 	 * @param name
 	 *            名称
 	 * @param value
@@ -516,13 +579,13 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 				options.expires = -1;
 			}
 			var expires = '';
-			if (options.expires && 
-					(typeof options.expires == 'number' || options.expires.toUTCString)) 
+			if (options.expires &&
+					(typeof options.expires == 'number' || options.expires.toUTCString))
 			{
 				var date;
 				if (typeof options.expires == 'number') {
 					date = new Date();
-					date.setTime(date.getTime() + 
+					date.setTime(date.getTime() +
 							(options.expires * 24 * 60 * 60 * 1000));
 				} else {
 					date = options.expires;
