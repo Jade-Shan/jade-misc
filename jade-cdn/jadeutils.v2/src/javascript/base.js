@@ -1,6 +1,3 @@
-String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
-String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
-String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
 /** 四舍五入：  Number(num).toFixed(size); */
 /**
  * 加法得到金额数据（保留精度问题）
@@ -64,6 +61,10 @@ Number.prototype.div = function (num) {
 	return (r1 / r2) * Math.pow(10, t2 - t1);
 };
 
+/* 字符串 */
+String.prototype.trim=function() { return this.replace(/(^\s*)|(\s*$)/g, ""); };
+String.prototype.trimLeft=function() { return this.replace(/(^\s*)/g, ""); };
+String.prototype.trimRight=function() { return this.replace(/(\s*$)/g, ""); };
 /**
  * 字符串格式化工具，用下标来替换
  *
@@ -252,8 +253,8 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 			}
 			c3 = str.charCodeAt(i++);
 			out += base64EncodeChars.charAt(c1 >> 2);
-			out += base64EncodeChars.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
-			out += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >>6));
+			out += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+			out += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
 			out += base64EncodeChars.charAt(c3 & 0x3F);
 		}
 		return out;
@@ -280,15 +281,13 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 			do {
 				c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
 			} while(i < len && c1 == -1);
-			if(c1 == -1)
-				break;
+			if(c1 == -1) break;
 	
 			/* c2 */
 			do {
 				c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
 			} while(i < len && c2 == -1);
-			if(c2 == -1)
-				break;
+			if(c2 == -1) break;
 	
 			out += String.fromCharCode((c1 << 2) | ((c2 & 0x30) >> 4));
 	
@@ -299,8 +298,7 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 					return out;
 				c3 = base64DecodeChars[c3];
 			} while(i < len && c3 == -1);
-			if(c3 == -1)
-				break;
+			if(c3 == -1) break;
 	
 			out += String.fromCharCode(((c2 & 0XF) << 4) | ((c3 & 0x3C) >> 2));
 	
@@ -311,8 +309,8 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 					return out;
 				c4 = base64DecodeChars[c4];
 			} while(i < len && c4 == -1);
-			if(c4 == -1)
-				break;
+			if(c4 == -1) break;
+
 			out += String.fromCharCode(((c3 & 0x03) << 6) | c4);
 		}
 		return out;
@@ -350,71 +348,71 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 		var so = -1 * tmSummer.getTimezoneOffset();
 		var tmWinter = new Date(Date.UTC(2005, 12, 30, 0, 0, 0, 0));
 		var wo = -1 * tmWinter.getTimezoneOffset();
-		if (-660 == so && -660 == wo) return 'Pacific/Midway';
-		if (-600 == so && -600 == wo) return 'Pacific/Tahiti';
-		if (-570 == so && -570 == wo) return 'Pacific/Marquesas';
-		if (-540 == so && -600 == wo) return 'America/Adak';
-		if (-540 == so && -540 == wo) return 'Pacific/Gambier';
-		if (-480 == so && -540 == wo) return 'US/Alaska';
-		if (-480 == so && -480 == wo) return 'Pacific/Pitcairn';
-		if (-420 == so && -480 == wo) return 'US/Pacific';
-		if (-420 == so && -420 == wo) return 'US/Arizona';
-		if (-360 == so && -420 == wo) return 'US/Mountain';
-		if (-360 == so && -360 == wo) return 'America/Guatemala';
-		if (-360 == so && -300 == wo) return 'Pacific/Easter';
-		if (-300 == so && -360 == wo) return 'US/Central';
-		if (-300 == so && -300 == wo) return 'America/Bogota';
-		if (-240 == so && -300 == wo) return 'US/Eastern';
-		if (-240 == so && -240 == wo) return 'America/Caracas';
-		if (-240 == so && -180 == wo) return 'America/Santiago';
-		if (-180 == so && -240 == wo) return 'Canada/Atlantic';
-		if (-180 == so && -180 == wo) return 'America/Montevideo';
-		if (-180 == so && -120 == wo) return 'America/Sao_Paulo';
-		if (-150 == so && -210 == wo) return 'America/St_Johns';
-		if (-120 == so && -180 == wo) return 'America/Godthab';
-		if (-120 == so && -120 == wo) return 'America/Noronha';
-		if (-60 == so && -60 == wo) return 'Atlantic/Cape_Verde';
-		if (0 === so && -60 === wo) return 'Atlantic/Azores';
-		if (0 === so && 0 === wo) return 'Africa/Casablanca';
-		if (60 == so && 0 === wo) return 'Europe/London';
-		if (60 == so && 60 == wo) return 'Africa/Algiers';
-		if (60 == so && 120 == wo) return 'Africa/Windhoek';
-		if (120 == so && 60 == wo) return 'Europe/Amsterdam';
-		if (120 == so && 120 == wo) return 'Africa/Harare';
-		if (180 == so && 120 == wo) return 'Europe/Athens';
-		if (180 == so && 180 == wo) return 'Africa/Nairobi';
-		if (240 == so && 180 == wo) return 'Europe/Moscow';
-		if (240 == so && 240 == wo) return 'Asia/Dubai';
-		if (270 == so && 210 == wo) return 'Asia/Tehran';
-		if (270 == so && 270 == wo) return 'Asia/Kabul';
-		if (300 == so && 240 == wo) return 'Asia/Baku';
-		if (300 == so && 300 == wo) return 'Asia/Karachi';
-		if (330 == so && 330 == wo) return 'Asia/Calcutta';
-		if (345 == so && 345 == wo) return 'Asia/Katmandu';
-		if (360 == so && 300 == wo) return 'Asia/Yekaterinburg';
-		if (360 == so && 360 == wo) return 'Asia/Colombo';
-		if (390 == so && 390 == wo) return 'Asia/Rangoon';
-		if (420 == so && 360 == wo) return 'Asia/Almaty';
-		if (420 == so && 420 == wo) return 'Asia/Bangkok';
-		if (480 == so && 420 == wo) return 'Asia/Krasnoyarsk';
-		if (480 == so && 480 == wo) return 'Australia/Perth';
-		if (540 == so && 480 == wo) return 'Asia/Irkutsk';
-		if (540 == so && 540 == wo) return 'Asia/Tokyo';
-		if (570 == so && 570 == wo) return 'Australia/Darwin';
-		if (570 == so && 630 == wo) return 'Australia/Adelaide';
-		if (600 == so && 540 == wo) return 'Asia/Yakutsk';
-		if (600 == so && 600 == wo) return 'Australia/Brisbane';
-		if (600 == so && 660 == wo) return 'Australia/Sydney';
-		if (630 == so && 660 == wo) return 'Australia/Lord_Howe';
-		if (660 == so && 600 == wo) return 'Asia/Vladivostok';
-		if (660 == so && 660 == wo) return 'Pacific/Guadalcanal';
-		if (690 == so && 690 == wo) return 'Pacific/Norfolk';
-		if (720 == so && 660 == wo) return 'Asia/Magadan';
-		if (720 == so && 720 == wo) return 'Pacific/Fiji';
-		if (720 == so && 780 == wo) return 'Pacific/Auckland';
-		if (765 == so && 825 == wo) return 'Pacific/Chatham';
-		if (780 == so && 780 == wo) return 'Pacific/Enderbury';
-		if (840 == so && 840 == wo) return 'Pacific/Kiritimati';
+		if (-660 == so && -660 ==  wo) return 'Pacific/Midway';
+		if (-600 == so && -600 ==  wo) return 'Pacific/Tahiti';
+		if (-570 == so && -570 ==  wo) return 'Pacific/Marquesas';
+		if (-540 == so && -600 ==  wo) return 'America/Adak';
+		if (-540 == so && -540 ==  wo) return 'Pacific/Gambier';
+		if (-480 == so && -540 ==  wo) return 'US/Alaska';
+		if (-480 == so && -480 ==  wo) return 'Pacific/Pitcairn';
+		if (-420 == so && -480 ==  wo) return 'US/Pacific';
+		if (-420 == so && -420 ==  wo) return 'US/Arizona';
+		if (-360 == so && -420 ==  wo) return 'US/Mountain';
+		if (-360 == so && -360 ==  wo) return 'America/Guatemala';
+		if (-360 == so && -300 ==  wo) return 'Pacific/Easter';
+		if (-300 == so && -360 ==  wo) return 'US/Central';
+		if (-300 == so && -300 ==  wo) return 'America/Bogota';
+		if (-240 == so && -300 ==  wo) return 'US/Eastern';
+		if (-240 == so && -240 ==  wo) return 'America/Caracas';
+		if (-240 == so && -180 ==  wo) return 'America/Santiago';
+		if (-180 == so && -240 ==  wo) return 'Canada/Atlantic';
+		if (-180 == so && -180 ==  wo) return 'America/Montevideo';
+		if (-180 == so && -120 ==  wo) return 'America/Sao_Paulo';
+		if (-150 == so && -210 ==  wo) return 'America/St_Johns';
+		if (-120 == so && -180 ==  wo) return 'America/Godthab';
+		if (-120 == so && -120 ==  wo) return 'America/Noronha';
+		if (-60  == so && -60  ==  wo) return 'Atlantic/Cape_Verde';
+		if (  0 === so && -60  === wo) return 'Atlantic/Azores';
+		if (  0 === so &&   0  === wo) return 'Africa/Casablanca';
+		if ( 60  == so &&   0  === wo) return 'Europe/London';
+		if ( 60  == so &&  60  ==  wo) return 'Africa/Algiers';
+		if ( 60  == so && 120  ==  wo) return 'Africa/Windhoek';
+		if (120  == so &&  60  ==  wo) return 'Europe/Amsterdam';
+		if (120  == so && 120  ==  wo) return 'Africa/Harare';
+		if (180  == so && 120  ==  wo) return 'Europe/Athens';
+		if (180  == so && 180  ==  wo) return 'Africa/Nairobi';
+		if (240  == so && 180  ==  wo) return 'Europe/Moscow';
+		if (240  == so && 240  ==  wo) return 'Asia/Dubai';
+		if (270  == so && 210  ==  wo) return 'Asia/Tehran';
+		if (270  == so && 270  ==  wo) return 'Asia/Kabul';
+		if (300  == so && 240  ==  wo) return 'Asia/Baku';
+		if (300  == so && 300  ==  wo) return 'Asia/Karachi';
+		if (330  == so && 330  ==  wo) return 'Asia/Calcutta';
+		if (345  == so && 345  ==  wo) return 'Asia/Katmandu';
+		if (360  == so && 300  ==  wo) return 'Asia/Yekaterinburg';
+		if (360  == so && 360  ==  wo) return 'Asia/Colombo';
+		if (390  == so && 390  ==  wo) return 'Asia/Rangoon';
+		if (420  == so && 360  ==  wo) return 'Asia/Almaty';
+		if (420  == so && 420  ==  wo) return 'Asia/Bangkok';
+		if (480  == so && 420  ==  wo) return 'Asia/Krasnoyarsk';
+		if (480  == so && 480  ==  wo) return 'Australia/Perth';
+		if (540  == so && 480  ==  wo) return 'Asia/Irkutsk';
+		if (540  == so && 540  ==  wo) return 'Asia/Tokyo';
+		if (570  == so && 570  ==  wo) return 'Australia/Darwin';
+		if (570  == so && 630  ==  wo) return 'Australia/Adelaide';
+		if (600  == so && 540  ==  wo) return 'Asia/Yakutsk';
+		if (600  == so && 600  ==  wo) return 'Australia/Brisbane';
+		if (600  == so && 660  ==  wo) return 'Australia/Sydney';
+		if (630  == so && 660  ==  wo) return 'Australia/Lord_Howe';
+		if (660  == so && 600  ==  wo) return 'Asia/Vladivostok';
+		if (660  == so && 660  ==  wo) return 'Pacific/Guadalcanal';
+		if (690  == so && 690  ==  wo) return 'Pacific/Norfolk';
+		if (720  == so && 660  ==  wo) return 'Asia/Magadan';
+		if (720  == so && 720  ==  wo) return 'Pacific/Fiji';
+		if (720  == so && 780  ==  wo) return 'Pacific/Auckland';
+		if (765  == so && 825  ==  wo) return 'Pacific/Chatham';
+		if (780  == so && 780  ==  wo) return 'Pacific/Enderbury';
+		if (840  == so && 840  ==  wo) return 'Pacific/Kiritimati';
 		return 'Not in US';
 	};
 
@@ -563,12 +561,10 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 	/**
 	 * cookie操作器
 	 *
-	 * @param name
-	 *            名称
-	 * @param value
-	 *            值
-	 * @param options
-	 *            其他选项
+	 * @param name 名称
+	 * @param value 值
+	 * @param options 其他选项
+	 *
 	 * @returns
 	 */
 	proto.cookieOperator = function (name, value, options) {

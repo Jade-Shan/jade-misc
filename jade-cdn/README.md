@@ -8,6 +8,14 @@
 
 3rd libs.
 
+* bootstrap
+* datatables
+* jquery
+* jsviews
+* showdown
+* zTree.v3
+
+
 ## jadeutils(deprecated)
 
 Static files for my personal project.
