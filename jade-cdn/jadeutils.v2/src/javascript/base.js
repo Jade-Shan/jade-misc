@@ -319,6 +319,98 @@ net.jadedungeon.utils = net.jadedungeon.utils || {};
 })(jQuery);
 
 
+/**
+ * JS时间Date格式化参数
+ *
+ * @param fmt : 格式化字符串如：'yyyy-MM-dd HH:mm:ss'
+ *
+ * @returns {String}
+ */
+Date.prototype.Format = function (fmt) {
+    var o = {
+		        "M+": this.getMonth() + 1, 
+		        "d+": this.getDate(), 
+		        "H+": this.getHours(),  
+		        "m+": this.getMinutes(),  
+		        "s+": this.getSeconds(), 
+		        "q+": Math.floor((this.getMonth() + 3) / 3), 
+		        "S": this.getMilliseconds()  
+		    };
+    var year = this.getFullYear();
+    var yearstr = year + '';
+    yearstr = yearstr.length >= 4 ? yearstr : '0000'.substr(0, 4 - yearstr.length) + yearstr;
+    
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (yearstr + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+};
+
+/**
+ * 添加毫秒数
+ *
+ * @param ms: 加上的毫秒数
+ *
+ * @returns {Date}
+ */
+Date.prototype.addMilliseconds = function(ms) {
+	var date = new Date(this);
+	date.setTime(date.getTime() + ms);
+	return date;
+};
+
+/**
+ * 添加秒数
+ *
+ * @param secs: 加上的秒数
+ *
+ * @returns {Date}
+ */
+Date.prototype.addSeconds = function(secs) {
+	var date = new Date(this);
+	date.setSeconds(date.getSeconds() + secs);
+	return date;
+};
+
+/**
+ * 添加天数
+ *
+ * @param days: 加上的天数，比如40天
+ *
+ * @returns {Date} 加上天数以后的日期
+ */
+Date.prototype.addDays = function(days) {
+	var date = new Date(this);
+	date.setDate(date.getDate() + days);
+	return date;
+};
+
+/**
+ * 添加月数
+ *
+ * @param months: 加上的月数
+ *
+ * @returns {Date}
+ */
+Date.prototype.addMonths = function(months) {
+	var date = new Date(this);
+	date.setMonth(date.getMonth() + months);
+	return date;
+};
+
+/**
+ * 添加年数
+ *
+ * @param years: 加上的年数
+ *
+ * @returns {Date}
+ */
+Date.prototype.addYear = function(years) {
+	var date = new Date(this);
+	date.setFullYear(date.getFullYear() + years);
+	return date;
+};
+
 (function ($) {
 	net.jadedungeon.utils.time= function () { this.init(); return this; };
 	var proto = net.jadedungeon.utils.time.prototype;
