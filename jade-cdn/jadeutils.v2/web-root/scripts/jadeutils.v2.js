@@ -1,5 +1,29 @@
 /** 四舍五入：  Number(num).toFixed(size); */
 /**
+ * 以可读的形式格式化数字
+ *
+ * 调用例子：var total = Number(0.09999999).add(0.09999999);
+ *
+ * @param formatExp: 格式表达式（代码还没有写，默认`##,###.##`的形式）
+ * @returns {String} : 人类可读性的字符串
+ */
+Number.prototype.format = function(formatExp) {
+	var num = this.toString().replace(/\$|\,/g, '');
+	if(isNaN(num))
+		num = "0";
+	sign = (num == (num = Math.abs(num)));
+	num = Math.floor(num * 100 + 0.50000000001);
+	cents = num % 100;
+	num = Math.floor(num / 100).toString();
+	if(cents < 10)
+		cents = "0" + cents;
+	for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+		num = num.substring(0, num.length - (4 * i + 3)) + 
+			',' +
+			num.substring(num.length - (4 * i + 3));
+	return (((sign) ? '' : '-') + num + '.' + cents);
+};
+/**
  * 加法得到金额数据（保留精度问题）
  * 调用例子：var total = Number(0.09999999).add(0.09999999);
  * @param num
