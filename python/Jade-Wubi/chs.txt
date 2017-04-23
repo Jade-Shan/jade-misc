@@ -4119,8 +4119,8 @@ rfn	抟
 rfp	挝
 rfq	抚
 rft	拷
-rfw	攉
 rfw	扶
+rfw	攉
 rgb	邱
 rgd	丘
 rge	捕
