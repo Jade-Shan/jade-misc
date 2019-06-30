@@ -43083,6 +43083,7 @@ mwte	内秀
 mwtf	内行
 mwth	肉片
 mwtj	肉香
+mwtk	内积
 mwtl	内务
 mwtm	内向
 mwtm	肉身
