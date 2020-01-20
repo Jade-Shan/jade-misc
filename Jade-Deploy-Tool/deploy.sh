@@ -1,14 +1,15 @@
 #!/bin/bash
 
-username=deploy
+prgname='deploy.sh'
+username='deploy'
 
 uploadDir=/var/myapp/upload/patch
 backupDir=$uploadDir/backup-$(date +%y-%m-%d_%H:%M:%S)
 deployDir=/var/myapp/libs
 
-help_msg=" MyApp FAT Env Deploy Util          \n\n" 
+help_msg=" MyApp FAT DEV Deploy Util          \n\n" 
 help_msg="$help_msg\033[37;41m                                    \033[0m\n"
-help_msg="$help_msg\033[37;41m *** WARNING: For FAT Env Only ***  \033[0m\n"
+help_msg="$help_msg\033[37;41m *** WARNING: For DEV Env Only ***  \033[0m\n"
 help_msg="$help_msg\033[37;41m                                    \033[0m\n"
 
 declare -A module_names=(
@@ -24,12 +25,12 @@ declare -A module_names=(
 declare -a module_deploy;
 
 if [[ $# < 1 ]]; then
-	echo "Usage: deploy -h "
+	echo "Usage: $prgname -h "
 	exit 0;
 fi
 
 # delete old file before 30 days
-sudo su - $username -c "find $uploadDir -mtime +30 -name "*" -exec rm -Rf {} \;"
+# sudo su - $username -c "find $uploadDir -mtime +30 -name "*" -exec rm -Rf {} \;"
 
 while getopts 'm:h' OPT; do
 	case $OPT in
@@ -52,16 +53,23 @@ while getopts 'm:h' OPT; do
 			echo -e "$help_msg"
 			echo "==================================="
 			echo "Select module to deploy: "
+			echo "-----+--------------------------------------------"
+			echo " key |             module                         "
+			echo "-----+--------------------------------------------"
 			for module_code in "${!module_names[@]}"; do
-				echo "    $module_code - ${module_names[$module_code]}";
+				echo "  $module_code  | ${module_names[$module_code]}";
 			done
+			echo "-----+--------------------------------------------"
+			echo ""
+			echo "Useage:"
+			echo "    bash ./$prgname -m <key1>[<key2>...]"
 			echo ""
 			echo "Example:"
-			echo "    bash ./deploy.sh -m abcd"
+			echo "    bash ./$prgname -m abcd"
 			exit 0;
 			;;
 		?)
-			echo "Usage: deploy -h "
+			echo "Usage: bash ./$prgname -h "
 			exit 0;
 			;;
 	esac
@@ -69,22 +77,22 @@ done
 
 echo ""
 echo "Stoping tomcat..."
-sudo service tomcat stop
+# sudo service tomcat stop
 echo "tomcat stoped"
 echo ""
 
-sudo su - $username -c "mkdir -p $backupDir"
+# sudo su - $username -c "mkdir -p $backupDir"
 for jarName in ${module_deploy[@]};do
 	echo " -- deploying module: $jarName "
 	echo "    sudo su - $username -c \" mv $deployDir/$jarName $backupDir \""
-	sudo su - $username -c " mv $deployDir/$jarName $backupDir "
+	# sudo su - $username -c " mv $deployDir/$jarName $backupDir "
 	echo "    sudo su - $username -c \" cp $uploadDir/$jarName $deployDir/$jarName \""
-	sudo su - $username -c " cp $uploadDir/$jarName $deployDir/$jarName "
+	# sudo su - $username -c " cp $uploadDir/$jarName $deployDir/$jarName "
 done
 
 echo ""
 echo "starting tomcat..."
-sudo service tomcat start
+# sudo service tomcat start
 echo "tomcat started"
 echo ""
 
