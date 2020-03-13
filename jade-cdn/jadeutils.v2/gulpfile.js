@@ -22,10 +22,6 @@ const srcScriptPath =      'src/scripts/';
 const tmpScriptPath =      'tmp/scripts/';
 const tagScriptPath = 'web-root/scripts/';
 
-
-var pathSrcScripts = './src/javascript/';
-var pathOutputScripts = './web-root/scripts/';
-
 // =======================
 // css
 // =======================
@@ -54,6 +50,32 @@ gulp.task('min-styles', gulp.series(/* 'build-less',*/ async (callback) => {
 	await callback();
 }));
 
+
+// =======================
+// javascript
+// =======================
+
+gulp.task('clean-scripts', async (callback) => {
+	await gulp.src([tmpScriptPath, tagScriptPath], 
+		{read: false, allowEmpty: true}).pipe(clean());
+	await callback();
+});
+
+// 检查javascript
+gulp.task('check-scripts', gulp.series(/* 'clean-scripts',*/ async (callback) => {
+	await gulp.src(srcScriptPath + '**/*.js').pipe(jshint())
+		.pipe(jshint.reporter('default'));
+	await callback();
+}));
+
+// 合并、压缩、重命名javascript
+gulp.task('min-scripts', gulp.series(/*'check-scripts',*/ async (callback) => {
+	await gulp.src(srcScriptPath + '**/*.js').pipe(concat('script.js'))
+		.pipe(gulp.dest(tmpScriptPath))
+		.pipe(rename({suffix: '.min'})).pipe(uglify())
+		.pipe(gulp.dest(tagStylePath));
+	await callback();
+}));
 
 
 // // 清空图片、样式、js

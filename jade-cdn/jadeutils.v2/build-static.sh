@@ -14,13 +14,11 @@ do
 			sleep 3 ;
 			gulp min-styles  ;
 			sleep 3 ;
-# 			gulp check-js    ;
-# #			gulp build-less-base  ;
-# #			gulp build-less-hobbit  ;
-# 			sleep 5 ;
-# #			gulp min-styles-base  ;
-# #			gulp min-styles-hobbit  ;
-# 			gulp min-scripts ;
+			gulp clean-scripts;
+			sleep 3 ;
+			gulp check-scripts;
+			sleep 3 ;
+			gulp min-scripts;
 			;;
 		a)
 			# qrsync ~/.config/qiniu/jadeutils.v2.json;
