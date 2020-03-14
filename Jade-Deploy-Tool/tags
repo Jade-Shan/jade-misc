@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ExampleTest	src/test/scala/ExampleTest.scala	/^class ExampleTest extends FunSuite {$/;"	c
+ExampleTest	src/test/scala/ExampleTest.scala	/^object ExampleTest { $/;"	c
+JavaExample	src/main/java/example/JavaExample.java	/^public class JavaExample {$/;"	c
+ScalaAppExample	src/main/scala/Example.scala	/^object ScalaAppExample extends App {$/;"	c
+ScalaModelExample	src/main/scala/Example.scala	/^class ScalaModelExample(val msg: String)$/;"	c
+SvnUtilsTest	src/test/scala/SvnUtilsTest.scala	/^class SvnUtilsTest extends FunSuite {$/;"	c
+SvnUtilsTest	src/test/scala/SvnUtilsTest.scala	/^object SvnUtilsTest { $/;"	c
+callJava	src/main/java/example/JavaExample.java	/^	public static String callJava(String msg) {$/;"	m	class:JavaExample
+example	src/main/java/example/JavaExample.java	/^package example;$/;"	p
+example	src/main/scala/Example.scala	/^package example$/;"	p
+example	src/test/scala/ExampleTest.scala	/^package example$/;"	p
+example	src/test/scala/SvnUtilsTest.scala	/^package example$/;"	p
+getLoggerByName	src/test/scala/ExampleTest.scala	/^	def getLoggerByName(name: String) = LoggerFactory.getLogger(name)$/;"	m
+getLoggerByName	src/test/scala/SvnUtilsTest.scala	/^	def getLoggerByName(name: String) = LoggerFactory.getLogger(name)$/;"	m
+logger	src/test/scala/ExampleTest.scala	/^	lazy val logger = LoggerFactory.getLogger(this.getClass)$/;"	l
+logger	src/test/scala/SvnUtilsTest.scala	/^	lazy val logger = LoggerFactory.getLogger(this.getClass)$/;"	l
+prop	src/test/scala/ExampleTest.scala	/^		val prop: Properties = new Properties()$/;"	l
+server	src/test/scala/ExampleTest.scala	/^		val server = prop.getProperty("conn.server")$/;"	l
