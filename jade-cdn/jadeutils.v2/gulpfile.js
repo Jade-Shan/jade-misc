@@ -73,7 +73,7 @@ gulp.task('min-scripts', gulp.series(/*'check-scripts',*/ async (callback) => {
 	await gulp.src(srcScriptPath + '**/*.js').pipe(concat('script.js'))
 		.pipe(gulp.dest(tmpScriptPath))
 		.pipe(rename({suffix: '.min'})).pipe(uglify())
-		.pipe(gulp.dest(tagStylePath));
+		.pipe(gulp.dest(tagScriptPath));
 	await callback();
 }));
 
