@@ -205,7 +205,7 @@ fe	圾
 ff	寺
 fg	二
 fh	直
-fi	示
+fi	求
 fj	进
 fk	吉
 fl	协
@@ -2389,8 +2389,8 @@ iuc	滚
 iud	洋
 iue	湔
 iuf	泮
-iug	漾
 iug	泣
+iug	漾
 iuj	漳
 iuk	涪
 ium	滴
@@ -3875,6 +3875,7 @@ qmu	负
 qmw	钠
 qmy	钡
 qna	饶
+qnb	包
 qnb	饣
 qnc	饴
 qnd	锯
@@ -4118,8 +4119,8 @@ rfn	抟
 rfp	挝
 rfq	抚
 rft	拷
-rfw	攉
 rfw	扶
+rfw	攉
 rgb	邱
 rgd	丘
 rge	捕
@@ -4411,7 +4412,6 @@ sgk	梧
 sgk	酲
 sgl	楝
 sgm	柄
-sgn	醑
 sgn	配
 sgo	醚
 sgp	酡
@@ -5047,8 +5047,8 @@ utd	疾
 ute	产
 ute	閁
 utf	冼
-uth	痄
 uth	首
+uth	痄
 utj	痢
 utk	阁
 utn	疙
@@ -5838,9 +5838,9 @@ ynh	盲
 yni	永
 yni	応
 ynj	鹿
-ynk	羸
-ynk	嬴
 ynk	启
+ynk	嬴
+ynk	羸
 ynm	遍
 ynn	记
 ynt	谧
@@ -11042,6 +11042,7 @@ butx	聪敏
 buud	陪送
 buuh	防疫站
 buut	隧道
+buuu	联立
 buuy	防盗门
 buvf	防意如城
 buvl	联姻
@@ -18597,7 +18598,7 @@ fajy	塔影
 fakd	哉
 fakg	域
 fakg	墐
-fakh	域中
+fakh	截距
 fakk	塸
 fakm	裁员
 faky	壦
@@ -31349,7 +31350,7 @@ ipbt	敩
 ipbu	学联
 ipca	演戏
 ipcd	党参
-ipce	沉勇
+ipce	浣熊
 ipci	少之又少
 ipcy	常驻
 ipdb	深宅大院
@@ -39954,6 +39955,7 @@ lknh	加收
 lknk	回避
 lknn	加快
 lknn	回忆
+lkny	圆心
 lkny	加以
 lkoe	加粗
 lkoo	回火
@@ -43081,6 +43083,7 @@ mwte	内秀
 mwtf	内行
 mwth	肉片
 mwtj	肉香
+mwtk	内积
 mwtl	内务
 mwtm	内向
 mwtm	肉身
@@ -63531,6 +63534,7 @@ tcwv	私分
 tcww	私人
 tcww	私欲
 tcwx	私货
+tcwy	私信
 tcwy	笃信
 tcxj	私费
 tcyb	私塾
@@ -68902,9 +68906,10 @@ udsw	送检
 udsy	拳术
 udtd	叛乱
 udte	减租
-udtf	状告
-udtf	送行
 udtf	头等
+udtf	送行
+udtf	叛徒
+udtf	状告
 udtg	养生
 udtg	郑重
 udtg	着重
@@ -85559,3 +85564,5 @@ yyyw	议论
 yyyy	方言
 yyyy	文言
 yyyy	言
+zzzz	——
+zzzz	·

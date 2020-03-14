@@ -13,7 +13,7 @@ sudo cp jtwb.db /usr/share/ibus-table/tables
 sudo cp static/jtwb.svg /usr/share/ibus-table/icons
 echo "clean cache for jtwb ..."
 rm -rf output/*
-rm jtwb.db
+rm ./jtwb.db
 rm ~/.ibus/tables/jtwb-user.db
 echo "done."
 
