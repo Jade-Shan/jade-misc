@@ -1,6 +1,25 @@
 Jadeutils V2
 =============
 
+Build
+-------------
+
+
+```bash
+bash ./build-static.sh
+```
+
+Useage
+-------------
+
+```bash
+python run-cdn.py -n <hostname> -p <port> -a <allow-origin>
+```
+
+* dev env: `bash run-dev.sh`
+* fat env: `bash run-fat.sh`
+* prd env: `bash run-prd.sh`
+
 
 TODO List
 -------------

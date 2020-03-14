@@ -8,7 +8,7 @@ while getopts "b:ctrae" arg #选项后面的冒号表示该选项需要参数
 do
 	case $arg in
 		c)
-			gulp clean-style ;
+			gulp clean-styles ;
 			sleep 3 ;
 			gulp build-less  ;
 			sleep 3 ;

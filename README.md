@@ -1,5 +1,8 @@
 Jade-Misc
 =============
 
-Misc tools
+Jade-CDN
+-------------
+[jade-cdn](jade-cdn/README.md)
+
 
