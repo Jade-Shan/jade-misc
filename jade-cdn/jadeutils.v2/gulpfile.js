@@ -78,6 +78,20 @@ gulp.task('min-scripts', gulp.series(/*'check-scripts',*/ async (callback) => {
 }));
 
 
+// 配置服务器
+gulp.task('serve', function () {
+    browserSync.init({
+        server: { baseDir: './app/dist' },
+        port: 8000
+    });
+    // 监听 html
+    gulp.watch('./app/src/template/**/*.html', ['html']).on(
+			'change', browserSync.reload);
+});
+
+
+
+
 // // 清空图片、样式、js
 // gulp.task('clean', function() {
 // 		gulp.src([pathOutputScripts], 
@@ -112,3 +126,4 @@ gulp.task('min-scripts', gulp.series(/*'check-scripts',*/ async (callback) => {
 // 		['clean']);
 // 		});
 // 
+//
