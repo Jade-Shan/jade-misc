@@ -400,3 +400,8 @@ Who you are speaks so loudly that I can't hear what you are saying.
 你的立场太过明显，让我完全听不到你的嘴巴在说什么。
 
                                        —— 爱默生
+%
+英雄之所以是英雄，并不是因为他有多强大的力量。
+而是他即便没有力量，面对邪恶侵害时他依然会选择抗争，
+而不是坐以待毙。
+                                           -- 佚名
