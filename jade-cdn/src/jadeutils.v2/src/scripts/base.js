@@ -707,8 +707,9 @@ Date.prototype.addYear = function(years) {
 			var path = options.path ? ';path=' + options.path : '';
 			var domain = options.domain ? ';domain=' + options.domain : '';
 			var secure = options.secure ? ';secure' : '';
+			var sameSite = options.SameSite ? ';SameSite=' + options.SameSite : '';
 			document.cookie = [ name, '=', encodeURIComponent(value), expires,
-					path, domain, secure ].join('');
+					path, domain, sameSite, secure ].join('');
 		} else {
 			var cookieValue = null;
 			if (document.cookie && document.cookie !== '') {
