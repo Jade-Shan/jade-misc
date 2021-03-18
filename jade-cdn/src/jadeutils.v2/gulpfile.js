@@ -14,7 +14,7 @@ const rename    = require('gulp-rename');      //重命名
 const concat    = require('gulp-concat');      //合并文件
 const clean     = require('gulp-clean');       //清空文件夹
 
-const themes = ['hobbit', 'dungeon'];
+const themes = ['hobbit', 'lo-fi', 'paper-print'];
 
 /* themeTasksParam 要作为gulp.parallel(...)的参数列表，
  * 所以不能用数组，定义一个类数组。
@@ -43,19 +43,22 @@ themes.forEach((theme) => {
 	themeTasks.push(imageTsk)
 
 	const styleTsk = 'process-style-' + theme;
-	const styleSrc = 'src/themes/' + theme + '/styles/';
+	const styleSrc = 'src/themes/';
+	const styleThemesSrc = 'src/themes/' + theme + '/styles/';
 	const styleDst = 'webroot/themes/' + theme + '/styles/';
 	gulp.task(styleTsk,  gulp.series(
 		() => {
 			return gulp.src([styleDst+ '*'], {read: false, allowEmpty: true})
 				.pipe(clean()); }, 
 		() => {
-			return gulp.src(styleSrc+ '**/*.less')
-				.pipe(less({compress: true})).on('error', (e) => {console.log(e)})
-				.pipe(gulp.dest(styleDst))
-				.pipe(concat('all.css')).pipe(gulp.dest(styleDst))
-				.pipe(minifycss()).pipe(rename({suffix: '.min'}))
-				.pipe(gulp.dest(styleDst))
+			return gulp.src([styleThemesSrc + '**/*.less', styleSrc + 'comm.less'])
+				.pipe(concat('all.less'))
+ 				.pipe(less({compress: true})).on('error', (e) => {console.log(e)})
+ 				.pipe(gulp.dest(styleDst))
+ 				//.pipe(concat('all.css'))
+ 				.pipe(gulp.dest(styleDst))
+ 				.pipe(minifycss()).pipe(rename({suffix: '.min'}))
+ 				.pipe(gulp.dest(styleDst))
 		}
 	));
 	themeTasks.push(styleTsk)
@@ -85,7 +88,8 @@ gulp.task('process-scripts', gulp.series('clean-scripts', () => {
 	return gulp.src([
 		scriptSrc + 'base.js',
 		scriptSrc + 'dataStructure.js',
-		scriptSrc + 'instance.js'
+		scriptSrc + 'instance.js',
+		scriptSrc + 'wiki.js'
 	]).pipe(jshint()).pipe(jshint.reporter('default'))
 		.pipe(gulp.dest(scriptTag))
 		.pipe(concat('all.js'))
