@@ -162,7 +162,12 @@ ul { margin-left:0em; padding-left: 1.8em; }
 /* ==========================================
  * 目录
  * ========================================== */
-.sideToc { position: fixed; top: 60px; margin-left:25px}
+.sideToc {
+background:@toc-bg-img repeat scroll 0 0 @toc-bg-color; transition: 1s; 
+color: @toc-tog-color-fg; cursor: pointer; font-size: 12px; 
+}
+.sideToc li { color: @toc-color-li; }
+.sideToc a  { color: @toc-color-a ; }
 .tocWrap { position: fixed; right: 10px; top: 60px; width: 300px; z-index: 100; opacity:0.3; }
 .tocWrap:hover { opacity:0.8; }
 .toggler {
