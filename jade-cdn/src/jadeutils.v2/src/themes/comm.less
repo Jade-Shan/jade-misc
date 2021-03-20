@@ -160,11 +160,135 @@ ul { margin-left:0em; padding-left: 1.8em; }
 .footer a:hover,.footer .right a:hover { color:@foot-href-hv-fg; text-decoration:underline; } 
 .footer .right,.footer .right a { color:@foot-href-right-fg; } 
 /* ==========================================
+ * widgit
+ * ========================================== */
+.widget { margin: auto; }
+
+.widget h2 {
+	margin: auto;
+	padding: 5px 10px 5px 10px;
+	color: @toc-tog-color-fg;
+	background: @toc-tog-color-bg;
+	border: 1px solid @toc-tog-color-bd;
+	box-shadow: inset 0px 0px 10px @widget-inner-shadow-color, 10px  0px 5px @widget-out-shadow-color;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.3em;
+	line-height: 1.5em;
+	font-weight: 200;
+	letter-spacing: 0.01em;
+}
+
+.widget-content	{
+	background: @toc-bg-img repeat scroll 0 0 ; transition: 1s; 
+	overflow: hidden;
+	margin-bottom: 15px;
+	padding: 10px 20px 20px 20px;
+	border: 1px solid #803530;
+	color: @text-color-main;
+	box-shadow: inset 0px 0px 10px @widget-inner-shadow-color, 10px 10px 5px @widget-out-shadow-color;
+	font-weight: 200;
+	font-size: 1em;
+	font-smooth: always;
+	line-height: 1.2em;
+	letter-spacing: 0.02em;
+}
+
+.widget-item-control {
+	float: right;
+	height: 20px;
+	margin-top: -20px;
+	position: relative;
+	z-index: 10;
+}
+
+.img-text-lst {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	outline: none;
+}
+
+.img-text-lst li {
+	border-bottom: 1px dashed @widget-splt-fg;
+	padding: .7em 0;
+	margin: 0;
+	vertical-align: baseline;
+	outline: none;
+}
+
+.img-text-lst div {
+	padding: 0;
+	padding-bottom: 0px;
+	vertical-align: baseline;
+	outline: none;
+}
+
+.img-text-itm {
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	outline: none;
+}
+
+.item-thumbnail {
+	float: left;
+	margin: 0 5px 5px 0;
+	height: 72px;
+	padding: 5px;
+	outline: none;
+}
+
+.item-thumbnail img {
+	padding: 0px;
+	margin-right: 8px;
+	border-radius: 5px;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.item-thumbnail img.img-hov {
+	-webkit-filter: saturate(0.0);
+	-moz-filter: saturate(0.0);
+}
+
+.item-thumbnail img.img-hov:hover {
+	-webkit-filter: saturate(1.1);
+	-moz-filter: saturate(1.1);
+}
+.img-text-lst .item-title {
+	padding-bottom: .2em;
+}
+.img-text-lst .item-title a {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	color: @text-color-main;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 0px;
+	vertical-align: baseline;
+	outline: none;
+}
+.img-text-lst .item-title a:visited {
+	color: @text-color-main;
+}
+.img-text-lst .item-title a:hover {
+	color: @text-color-main;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+}
+
+
+/* ==========================================
  * 目录
  * ========================================== */
 .sideToc {
-background:@toc-bg-img repeat scroll 0 0 @toc-bg-color; transition: 1s; 
-color: @toc-tog-color-fg; cursor: pointer; font-size: 12px; 
+background:@toc-bg-img repeat scroll 0 0 @toc-bg-color;
+color: @toc-tog-color-fg; cursor: pointer; font-size: 1em; 
 }
 .sideToc li { color: @toc-color-li; }
 .sideToc a  { color: @toc-color-a ; }
@@ -174,7 +298,7 @@ color: @toc-tog-color-fg; cursor: pointer; font-size: 12px;
 	position: relative; z-index: 101; 
 	border: 1px solid @toc-tog-color-bd; border-radius: 5px 5px 0 0; 
 	background: none repeat scroll 0 0 @toc-tog-color-bg; 
-	color: @toc-tog-color-fg; cursor: pointer; font-size: 12px; text-align: center; 
+	color: @toc-tog-color-fg; cursor: pointer; font-size: 1em; text-align: center; 
 }
 /* 目录展开与收起状态 */
 .tocIdx { 
