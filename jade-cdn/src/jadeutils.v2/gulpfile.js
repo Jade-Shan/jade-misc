@@ -53,9 +53,7 @@ themes.forEach((theme) => {
 		() => {
 			return gulp.src([styleThemesSrc + '**/*.less', styleSrc + 'comm.less'])
 				.pipe(concat('all.less'))
- 				.pipe(less({compress: true})).on('error', (e) => {console.log(e)})
- 				.pipe(gulp.dest(styleDst))
- 				//.pipe(concat('all.css'))
+ 				.pipe(less({compress: false})).on('error', (e) => {console.log(e)})
  				.pipe(gulp.dest(styleDst))
  				.pipe(minifycss()).pipe(rename({suffix: '.min'}))
  				.pipe(gulp.dest(styleDst))
