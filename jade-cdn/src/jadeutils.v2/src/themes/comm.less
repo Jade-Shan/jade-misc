@@ -5,7 +5,7 @@ body {
 	color: @text-color-main;
 	background:@page-bg-img ;
 	background-attachment:fixed;
-	font:normal @text-font-family-nomal;
+	font-family: normal @text-font-family-nomal;
 }
 /* ==========================================
  * banner pic
@@ -42,7 +42,9 @@ p,blockquote,ul { margin-bottom:1.2em; }
 blockquote { 
 	color:@text-quote-fg;
 	background:@text-quote-bg  no-repeat;
-	font:normal 1em serif; padding-left:22px; border:0;
+	font-family: @text-font-family-quote;
+	//font:normal 1em serif; 
+	padding-left:22px; border:0;
 } 
 blockquote p { padding:6px; } 
 ul { margin-left:0em; padding-left: 1.8em; } 
@@ -286,12 +288,17 @@ ul { margin-left:0em; padding-left: 1.8em; }
 /* ==========================================
  * 目录
  * ========================================== */
-.sideToc {
-background:@toc-bg-img repeat scroll 0 0 @toc-bg-color;
-color: @toc-tog-color-fg; cursor: pointer; font-size: 1em; 
+
+.sideTocWrapper {
+	position: fixed; 
+	top: 60px; 
+	width: 300px;
 }
-.sideToc li { color: @toc-color-li; }
-.sideToc a  { color: @toc-color-a ; }
+.sideToc {
+	overflow: scroll;
+	background:@toc-bg-img repeat scroll 0 0 @toc-bg-color;
+	color: @toc-tog-color-fg; cursor: pointer; font-size: 1em; font-weight: 450;
+}
 .tocWrap { position: fixed; right: 10px; top: 60px; width: 300px; z-index: 100; opacity:0.3; }
 .tocWrap:hover { opacity:0.8; }
 .toggler {
@@ -312,7 +319,7 @@ color: @toc-tog-color-fg; cursor: pointer; font-size: 1em;
 .tocIdx li { color: @toc-color-li; }
 .tocIdx a  { color: @toc-color-a ; }
 /* 目录层级收起/打开 */
-div.tocIdx>ul ul   { overflow: hidden; }
+.tocIdx>ul ul   { overflow: hidden; }
 .toc-icon-open  { list-style-image:@toc-itm-open-img  }
 .toc-icon-close { list-style-image:@toc-itm-clos-img }
 .toc-sub-open   { width: auto; height: auto; transition: 1s width, 1s 1s height; }
@@ -434,3 +441,8 @@ th .MathJax { color: @table-color-th-fg; background: @table-color-th-bg; }
  *  side-bar
  * ========================================== */
 .side-blank-block { height: 60px; }
+/* ==========================================
+ *  pop-image
+ * ========================================== */
+#photo-frame>.modal-dialog{width:95%}
+
