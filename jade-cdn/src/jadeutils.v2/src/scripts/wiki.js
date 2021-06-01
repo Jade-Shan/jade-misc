@@ -55,6 +55,46 @@ var net = net || {};
 		$("#topnav").html(navhtml);
 	};
 
+	self.renderPagination = function(page, count, callbackName) {
+		let i = 1;
+		let html = '<ul class="pagination center">';
+		if (page === 1) {
+			html = html + '<li><a class="disable" href="javascript:void(0);">&laquo;</a></li>';
+		} else {
+			html = html + '<li><a href="javascript:' + callbackName + '(' + (page - 1) + ');">&laquo;</a></li>' + '<li><a href="javascript:' + callbackName + '(' + i + ');">' + i + '</a></li>';
+		}
+		i = i + 1;
+		if (page > 6) {
+			i = page - 5;
+			html = html + '<li><a class="disable" href="javascript:void(0);">...</a></li>';
+		}
+		while (page > i) {
+			html = html + '<li><a href="javascript:' + callbackName + '(' + i + ');">' + i + '</a></li>';
+			i = i + 1;
+		}
+		html = html + '<li class="active"><a href="javascript:void(0);">' + page + '</a></li>';
+		i = page + 1;
+		if ((count - page) > 6) {
+			while (i <= (page + 5)) {
+				html = html + '<li><a href="javascript:' + callbackName + '(' + i + ');">' + i + '</a></li>';
+				i = i + 1;
+			}
+			i = count;
+			html = html + '<li><a class="disable" href="javascript:void(0);">...</a></li>';
+		}
+		while (i <= count) {
+			html = html + '<li><a href="javascript:' + callbackName + '(' + i + ');">' + i + '</a></li>';
+			i = i + 1;
+		}
+		if (page === count) {
+			html = html + '<li><a class="disable" href="javascript:void(0);">&raquo;</a></li>';
+		} else {
+			html = html + '<li><a href="javascript:' + callbackName + '(' + (page + 1) + ');">&raquo;</a></li>';
+		}
+		html = html + '</ul>';
+		return html;
+	};
+
 	self.renderSubTitle = function (page) { $("#subTitle").html(page.subTitle); };
 
 	self.renderPhotoFrame = function () {
