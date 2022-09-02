@@ -2,10 +2,12 @@
 
 
 ```bash
+#!/bin/bash
+cd $HOME/.local/share/fontunes/
 echo
 echo "=============== Quote Of The Day ==============="
 echo
-fortune
+fortune 20% chinese 10% diet 10% fortunes 10% jade-aphorism 10% jade-scripts 20% song100 20% tang300
 echo
 echo "================================================"
 echo
