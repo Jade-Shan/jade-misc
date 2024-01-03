@@ -87,6 +87,7 @@ gulp.task('process-scripts', gulp.series('clean-scripts', () => {
 		scriptSrc + 'base.js',
 		scriptSrc + 'dataStructure.js',
 		scriptSrc + 'instance.js',
+		scriptSrc + 'customHtmlTag.js',
 		scriptSrc + 'wiki.js'
 	]).pipe(jshint()).pipe(jshint.reporter('default'))
 		.pipe(gulp.dest(scriptTag))

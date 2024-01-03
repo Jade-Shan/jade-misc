@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 /** 四舍五入：  Number(num).toFixed(size); */
 /**
  * 以可读的形式格式化数字

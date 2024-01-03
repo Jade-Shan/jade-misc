@@ -153,6 +153,7 @@ var net = net || {};
 
 	self.render = function () {
 		net.jadedungeon.renderTopNav(this.initCfg);
+		jadeUtils.initCustomElements();
 		$("#switch-theme-hobbit").on("click", (t) => {page.changeTheme('hobbit');});
 		$("#switch-theme-lo-fi").on("click", (t) => {page.changeTheme('lo-fi');});
 		$("#switch-theme-paper-print").on("click", (t) => {page.changeTheme('paper-print');});
