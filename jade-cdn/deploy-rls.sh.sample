@@ -1,10 +1,4 @@
 #!/bin/bash
-bash ./build.sh
-
-tar -cvf cdn.tar.gz webroot
-
-scp cdn.tar.gz username@host:/websitePath
-
-rm -rf cdn.tar.gz
-
-
+bash build.sh
+tar -czf webroot.tar.gz webroot
+scp webroot.tar.gz   user-name@host-name:web-root

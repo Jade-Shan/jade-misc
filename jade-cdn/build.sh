@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cd src/3rd/
+cd cdn-libs/3rd/
 bash ./build.sh
 cd ../..
 echo $PWD
 
-cd src/jadeutils.v2/
+cd cdn-libs/jadeutils.v2/
 bash ./build.sh
 echo $PWD
 cd ../..
