@@ -1,4 +1,8 @@
 #!/bin/bash
 bash build.sh
-tar -czf webroot.tar.gz webroot
-scp webroot.tar.gz   user-name@host-name:web-root
+
+scp 3rd.tar.gz           user-name@host-name:web-root
+
+scp jadeutils.v2.tar.gz  user-name@host-name:web-root
+
+
